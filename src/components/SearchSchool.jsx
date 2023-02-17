@@ -7,11 +7,15 @@ import { Place } from "./Place";
 import { BASE_URL, ISTITUTE_NAME } from '../config.ts'
 import TabsBasic from "./TabsBasic";
 import { TripComponent } from "./TripComponent";
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 
 export const SearchSchool = () => {
 
   const [place, setPlace] = useState("");
+
+  const navigate = useNavigate();
 
   const [trips, setTrips] = useState([]);
 
@@ -66,6 +70,16 @@ export const SearchSchool = () => {
     .catch(error => console.log(error));
     setIsLoading(false);
   }
+
+  const isLoggedIn = () => {
+    if(window.localStorage.getItem('token') == null){
+        navigate('/signin')
+    }
+  }
+
+  useEffect(() => {
+    isLoggedIn()
+  },[])
 
   return(
     <div className="display-flex space-around width-full height-full">

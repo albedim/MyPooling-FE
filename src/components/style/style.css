@@ -100,3 +100,14 @@ body{
 .button:hover{
   background-color: #daeaff;
 }
+
+.flexDirection{
+  flex-direction: row;
+}
+
+@media screen and (max-width: 1050px) {
+  .menu{
+    display: block;
+    overflow-y: scroll;
+  }
+}
