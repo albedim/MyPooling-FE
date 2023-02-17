@@ -1,10 +1,10 @@
-import { Option, Select } from "@mui/joy";
-import { Menu, MenuItem } from "@mui/material";
+import { Alert, Snackbar } from "@mui/material";
 import axios from "axios";
 import { useState } from "react";
 import { IonIcon } from "react-ion-icon";
 import { SpinnerCircular } from "spinners-react";
 import { Place } from "./Place";
+import TabsBasic from "./TabsBasic";
 import { TripComponent } from "./TripComponent";
 
 
@@ -58,10 +58,9 @@ export const Search = () => {
     setHasSelected(true);
     setIsLoading(true);
     console.log(place.lat, place.lon)
-    await axios.get(`http://192.168.1.10:5000/api/v_1_4_0/trip/get/near?x=${parseFloat(place.lat)}&y=${parseFloat(place.lon)}&strength=${request.strength}&departure_date=${request.departure_date.replaceAll("-",",")}`)
+    await axios.get(`http://albedim.pythonanywhere.com/api/v_1_4_0/trip/get/near?x=${parseFloat(place.lat)}&y=${parseFloat(place.lon)}&strength=${request.strength}&departure_date=${request.departure_date.replaceAll("-",",")}`)
     .then(response => {
       setTrips(response.data);
-      console.log(response.data)
     })
     .catch(error => console.log(error));
     setIsLoading(false);

@@ -1,6 +1,7 @@
-import { Menu, MenuItem } from "@mui/joy";
 import Flag from "react-flagkit";
 import { IonIcon } from "react-ion-icon";
+import BasicMenu from "./BasicMenu";
+import TabsBasic from "./TabsBasic";
 
 /**
  * @author: albedim <dimaio.albe@gmail.com>
@@ -28,8 +29,7 @@ export const TopMenu = () => {
         </div>
         <div className="display-flex space-around align-center width-124">
           <div className="display-flex space-between width-80 hover">
-            <span className="font-family font-size-17">Alberto</span>
-            <IonIcon name="chevron-down-outline"/>
+            <BasicMenu userName={"Alberto"} />
           </div>
         </div>
       </div>
