@@ -4,11 +4,12 @@ import { useState } from "react";
 import { IonIcon } from "react-ion-icon";
 import { SpinnerCircular } from "spinners-react";
 import { Place } from "./Place";
+import { BASE_URL, ISTITUTE_NAME } from '../config.ts';
 import TabsBasic from "./TabsBasic";
 import { TripComponent } from "./TripComponent";
 
 
-export const Search = () => {
+export const SearchHome = () => {
 
   const [place, setPlace] = useState("");
 
@@ -58,7 +59,7 @@ export const Search = () => {
     setHasSelected(true);
     setIsLoading(true);
     console.log(place.lat, place.lon)
-    await axios.get(`http://albedim.pythonanywhere.com/api/v_1_4_0/trip/get/near?x=${parseFloat(place.lat)}&y=${parseFloat(place.lon)}&strength=${request.strength}&departure_date=${request.departure_date.replaceAll("-",",")}`)
+    await axios.get(BASE_URL + `/trip/get/near?x=${parseFloat(place.lat)}&y=${parseFloat(place.lon)}&strength=${request.strength}&departure_date=${request.departure_date.replaceAll("-",",")}&mode=home`)
     .then(response => {
       setTrips(response.data);
     })
