@@ -254,7 +254,7 @@ class Landing extends React.Component {
                   <img
                     alt="..."
                     className="img-fluid floating"
-                    src="./assets/img/theme/promo-1.png"
+                    src="assets/img/theme/promo-1.png"
                   />
                 </Col>
                 <Col className="order-md-1" md="6">
