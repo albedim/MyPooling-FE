@@ -17,7 +17,8 @@ export default function BasicMenu({userName}) {
   };
 
   const logout = () => {
-    window.localStorage.removeItem('id');
+    window.localStorage.removeItem('token');
+    navigate("/")
   }
 
   const navigate = useNavigate()

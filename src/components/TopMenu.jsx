@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import jwt from 'jwt-decode'
 import Flag from "react-flagkit";
 import { IonIcon } from "react-ion-icon";
 import { useNavigate } from "react-router-dom";
@@ -38,7 +39,7 @@ export const TopMenu = () => {
           <div className="display-flex space-between width-80 hover">
             {
               window.localStorage.getItem('token') != null ? (
-                <BasicMenu userName={"Alberto"} />
+                <BasicMenu userName={jwt(window.localStorage.getItem('token')).sub.name} />
               ):(
                 <button onClick={(e) => navigate("/signin")} className="hover white-backgroundcolor border-radius-5 border-smaller blue-color border-blue height-34 width-140">Entra</button>
               )

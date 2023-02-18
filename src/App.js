@@ -9,7 +9,7 @@ import { Home } from './components/Home';
 
 function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename='/MyPooling-FE'>
       <Routes>
         <Route path="/go_to_school" element={<><TopMenu/><SearchSchool/></>}/>
         <Route path="/" element={<><TopMenu/><Home/></>}/>
