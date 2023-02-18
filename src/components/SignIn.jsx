@@ -82,10 +82,10 @@ export const SignIn = () => {
             <div className='display-flex space-around align-center height-100'>
               {
                 loginData.email == "" || loginData.password == "" ? (
-                  <button onClick={(e) => login(e)} className='opacity-30 font-family border-none white-color blue-backgroundcolor border-radius-5 height-44 width-140'>ACCEDI</button>
+                  <button className='opacity-30 font-family border-none white-color blue-backgroundcolor border-radius-5 height-44 width-140'>ACCEDI</button>
                 ):(
                   isLoading ? (
-                    <button onClick={(e) => login(e)} className='space-around display-flex opacity-30 font-family border-none white-color blue-backgroundcolor border-radius-5 height-44 width-140'>
+                    <button className='space-around display-flex opacity-30 font-family border-none white-color blue-backgroundcolor border-radius-5 height-44 width-140'>
                       <SpinnerCircular size={20} color='white' thickness={200} secondaryColor={'blue'} />
                     </button>
                   ):(
