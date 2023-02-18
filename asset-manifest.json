@@ -1,16 +1,16 @@
 {
   "files": {
     "main.css": "/MyPooling-FE/static/css/main.5d87d666.css",
-    "main.js": "/MyPooling-FE/static/js/main.b25ec1e5.js",
+    "main.js": "/MyPooling-FE/static/js/main.36c72c73.js",
     "static/js/787.343ddc04.chunk.js": "/MyPooling-FE/static/js/787.343ddc04.chunk.js",
     "static/media/logo.svg": "/MyPooling-FE/static/media/logo.6ce24c58023cc2f8fd88fe9d219db6c6.svg",
     "index.html": "/MyPooling-FE/index.html",
     "main.5d87d666.css.map": "/MyPooling-FE/static/css/main.5d87d666.css.map",
-    "main.b25ec1e5.js.map": "/MyPooling-FE/static/js/main.b25ec1e5.js.map",
+    "main.36c72c73.js.map": "/MyPooling-FE/static/js/main.36c72c73.js.map",
     "787.343ddc04.chunk.js.map": "/MyPooling-FE/static/js/787.343ddc04.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.5d87d666.css",
-    "static/js/main.b25ec1e5.js"
+    "static/js/main.36c72c73.js"
   ]
 }
