@@ -91,11 +91,6 @@ export const TripComponent = ({trip_id, step_id, username, creation_date, used_s
           <button onClick={(e) => addRide()} className="transition button hover font-family blue-color border-smaller outline-none blue-border border-radius-5 white-backgroundcolor margin-left-14 margin-top-14 height-38 width-114">PARTECIPA</button>
         </div>
       </div>
-      <Snackbar anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }} open={openAlert} autoHideDuration={3000} onClose={(e) => setOpenAlert(false)}>
-        <Alert severity={typeAlert} sx={{ width: '340px' }}>
-          {messageAlert}
-        </Alert>
-      </Snackbar>
     </div>
   );
 

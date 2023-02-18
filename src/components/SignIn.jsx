@@ -4,6 +4,8 @@ import { useState } from 'react';
 import './style/pattern.css';
 import './style/style.css';
 import { useNavigate } from 'react-router-dom';
+import { Alert, Snackbar } from '@mui/material';
+import { SpinnerCircular } from 'spinners-react';
 
 /**
  * @author: mattesal <matteoosalvii@gmail.com>
@@ -20,6 +22,14 @@ export const SignIn = () => {
     'password': ""
   })
 
+  const [isLoading, setIsLoading] = useState(false)
+
+  const [openAlert, setOpenAlert] = useState(false)
+
+  const [messageAlert, setMessageAlert] = useState("")
+
+  const [typeAlert, setTypeAlert] = useState("");
+
   const navigate = useNavigate()
 
   const handleLoginData = (e) => {
@@ -30,12 +40,25 @@ export const SignIn = () => {
 
   const login = async (e) => {
     e.preventDefault();
+    setIsLoading(true);
     await axios.post(BASE_URL + '/user/signin', loginData)
     .then(response => {
-      window.localStorage.setItem('token', response.data.param)
-      navigate("/")
+      setOpenAlert(true)
+      setMessageAlert("Login effettuato con successo")
+      setTypeAlert("success")
+      setTimeout(() => {
+        setIsLoading(false)
+        window.localStorage.setItem('token', response.data.param)
+        navigate("/")
+      }, 2400);
     })
-    .catch(error => {console.log(error)})
+    .catch(error => {
+      setOpenAlert(true);
+      setMessageAlert("Credenziali non valide")
+      setTypeAlert("error")
+      setIsLoading(false)
+      console.log(error)
+    })
   }
 
   return(
@@ -57,15 +80,32 @@ export const SignIn = () => {
               </div>
             </div>
             <div className='display-flex space-around align-center height-100'>
-              <button onClick={(e) => login(e)} className='hover font-family border-none white-color blue-backgroundcolor border-radius-5 height-44 width-140'>ACCEDI</button>
+              {
+                loginData.email == "" || loginData.password == "" ? (
+                  <button onClick={(e) => login(e)} className='opacity-30 font-family border-none white-color blue-backgroundcolor border-radius-5 height-44 width-140'>ACCEDI</button>
+                ):(
+                  isLoading ? (
+                    <button onClick={(e) => login(e)} className='space-around display-flex opacity-30 font-family border-none white-color blue-backgroundcolor border-radius-5 height-44 width-140'>
+                      <SpinnerCircular size={20} color='white' thickness={200} secondaryColor={'blue'} />
+                    </button>
+                  ):(
+                    <button onClick={(e) => login(e)} className='hover font-family border-none white-color blue-backgroundcolor border-radius-5 height-44 width-140'>ACCEDI</button>
+                  )
+                )
+              }
             </div>
             <div className='height-74 display-block'>
-              <h2 className='hover blue-color font-weight-600 font-size-14 font-family'>Registrati</h2>
+              <h2 onClick={(e) => navigate("/signup")} className='hover blue-color font-weight-600 font-size-14 font-family'>Registrati</h2>
               <h2 className='hover gray-color font-weight-500 font-size-14 font-family'>Recupera password</h2>
             </div>
           </div>
         </div>
       </div>
+      <Snackbar anchorOrigin={{ vertical: 'top', horizontal: 'center' }} open={openAlert} autoHideDuration={3000} onClose={(e) => setOpenAlert(false)}>
+        <Alert severity={typeAlert} sx={{ width: '340px' }}>
+          {messageAlert}
+        </Alert>
+      </Snackbar>
     </div>
   )
 }
