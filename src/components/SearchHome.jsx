@@ -71,14 +71,20 @@ export const SearchHome = () => {
     setIsLoading(false);
   }
 
-  const isLoggedIn = () => {
-    if(window.localStorage.getItem('token') == null){
-        navigate('/signin')
-    }
-  }
-
+  // Token validation
+  
   useEffect(() => {
-    isLoggedIn()
+    if(window.localStorage.getItem('token') == null){
+      navigate("/signin")
+    }else{
+      axios.get(BASE_URL + '/user/session_check?jwt='+window.localStorage.getItem('token'))
+      .then(response => {
+        
+      })
+      .catch(error => {
+        navigate("/signin")
+      })
+    }
   },[])
 
   return(

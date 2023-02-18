@@ -76,7 +76,7 @@ body{
 }
 
 .opacity-background{
-  background-color: rgb(242, 242, 242)
+  background-color: rgba(22, 22, 22, 0.3);
 }
 
 .box-shadow-clearer{
@@ -110,4 +110,12 @@ body{
     display: block;
     overflow-y: scroll;
   }
+}
+
+.popup{
+  display: none;
+}
+
+.ok-backgroundcolor{
+  background-color: transparent;
 }

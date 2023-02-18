@@ -7,11 +7,13 @@ import { SearchSchool } from './components/SearchSchool';
 import { SearchHome } from './components/SearchHome';
 import { Home } from './components/Home';
 import { Signup } from './components/Signup';
+import { ChooseTripPopup } from './components/ChooseTripPopup';
 
 function App() {
   return (
     <BrowserRouter basename='/MyPooling-FE'>
       <Routes>
+        <Route path='/choose' element={<><ChooseTripPopup/><TopMenu/><Home/></>}/>
         <Route path="/go_to_school" element={<><TopMenu/><SearchSchool/></>}/>
         <Route path="/signup" element={<><Signup/></>}/>
         <Route path="/" element={<><TopMenu/><Home/></>}/>
