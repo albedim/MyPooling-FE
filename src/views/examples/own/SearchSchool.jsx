@@ -3,7 +3,7 @@ import { useState } from "react";
 import { IonIcon } from "react-ion-icon";
 import { SpinnerCircular } from "spinners-react";
 import { Place } from "./Place";
-import { BASE_URL, ISTITUTE_NAME } from '../config.ts'
+import { BASE_URL, ISTITUTE_NAME } from '../../../config.ts'
 import { TripComponent } from "./TripComponent";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";

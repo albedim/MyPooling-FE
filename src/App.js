@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Switch } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import HomePage from "./views/examples/own/HomePage";
 import Profile from "./views/examples/Profile";
 import Register from "./views/examples/Register";
@@ -13,21 +13,21 @@ import { SearchSchool } from "./views/examples/own/SearchSchool";
 export function App(){
   return(
     <BrowserRouter>
-      <Switch>
+      <Routes>
         <Route 
           path="/landing-page"
-          exact 
-          render={(props) => <Index {...props} />}
+          exact
+          element={(props) => <Index {...props} />}
         />
         <Route 
           path="/go_to"
           exact 
-          component={<SearchSchool/>}
+          element={<SearchSchool/>}
         />
         <Route
           path="/"
           exact
-          render={(props) => <HomePage {...props} />}
+          element={<HomePage/>}
         />
         <Route
           path="/signin"
@@ -44,7 +44,7 @@ export function App(){
           exact
           render={(props) => <Register {...props} />}
         />
-      </Switch>
+      </Routes>
     </BrowserRouter>
   );
 }
