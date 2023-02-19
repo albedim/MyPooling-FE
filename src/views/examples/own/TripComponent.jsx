@@ -61,7 +61,7 @@ export const TripComponent = ({trip_id, step_id, username, creation_date, used_s
   return(
     <div className="box-shadow white-backgroundcolor border-radius-5 margin-left-40 height-240 width-340">
       <div className="display-flex space-between align-center height-74">
-        <div className="width-140"><h2 className="margin-top-24 font-size-20 margin-left-34 blue-color font-family">#{code}</h2></div>
+        <div className="width-140"><h2 className="font-weight-600 margin-top-24 font-size-20 margin-left-34 blue-color font-family">#{code}</h2></div>
         <div className="space-around align-center display-flex display-flex height-54 width-110">
           {used_slots < slots ? (
             <div className="display-flex width-38 display-flex">
@@ -82,7 +82,7 @@ export const TripComponent = ({trip_id, step_id, username, creation_date, used_s
       </div>
       <div className="space-between display-flex height-80">
         <div className="">
-          <div className="display-flex align-center height-34 width-140"><h2 className="font-size-18 margin-left-40 font-family">@{username}</h2></div>
+          <div className="display-flex align-center height-34 width-140"><h2 className="font-weight-500 font-size-18 margin-left-40 font-family">@{username}</h2></div>
           <div className="align-center display-flex height-24 width-140"><h4 className="font-size-14 font-weight-400 margin-left-40 gray-color font-family">{date}</h4></div>
         </div>
         <div className="display-flex width-160">

@@ -21,11 +21,11 @@ import React from "react";
 import { Container, Row } from "reactstrap";
 
 // core components
-import DemoNavbar from "../components/Navbars/DemoNavbar.js";
+import { DemoNavbar } from "../components/Navbars/DemoNavbar.js";
 import CardsFooter from "../components/Footers/CardsFooter.js";
 
 // index page sections
-import Hero from "./IndexSections/Hero.js";
+import { Hero } from "./IndexSections/Hero.js";
 import Buttons from "./IndexSections/Buttons.js";
 import Inputs from "./IndexSections/Inputs.js";
 import CustomControls from "./IndexSections/CustomControls.js";

@@ -21,7 +21,7 @@ import React from "react";
 import { Button, Card, Container, Row, Col } from "reactstrap";
 
 // core components
-import DemoNavbar from "../../components/Navbars/DemoNavbar.js";
+import { DemoNavbar } from "../../components/Navbars/DemoNavbar.js";
 import SimpleFooter from "../../components/Footers/SimpleFooter.js";
 
 class Profile extends React.Component {
@@ -34,7 +34,6 @@ class Profile extends React.Component {
     return (
       <>
         <DemoNavbar />
-        <main className="profile-page" ref="main">
           <section className="section-profile-cover section-shaped my-0">
             {/* Circles background */}
             <div className="shape shape-style-1 shape-default alpha-4">
@@ -159,7 +158,6 @@ class Profile extends React.Component {
               </Card>
             </Container>
           </section>
-        </main>
         <SimpleFooter />
       </>
     );
