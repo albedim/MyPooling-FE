@@ -1,3 +1,4 @@
+
 /*!
 
 =========================================================
@@ -21,19 +22,14 @@ import React from "react";
 import { Button, Card, Container, Row, Col } from "reactstrap";
 
 // core components
-import { DemoNavbar } from "../../components/Navbars/DemoNavbar.js";
-import SimpleFooter from "../../components/Footers/SimpleFooter.js";
+import { DemoNavbar } from "../../components/Navbars/DemoNavbar";
+import SimpleFooter from "../../components/Footers/SimpleFooter";
 
-class Profile extends React.Component {
-  componentDidMount() {
-    document.documentElement.scrollTop = 0;
-    document.scrollingElement.scrollTop = 0;
-    this.refs.main.scrollTop = 0;
-  }
-  render() {
+const Profilee = () => {
     return (
       <>
         <DemoNavbar />
+        <div className="profile-page">
           <section className="section-profile-cover section-shaped my-0">
             {/* Circles background */}
             <div className="shape shape-style-1 shape-default alpha-4">
@@ -73,7 +69,7 @@ class Profile extends React.Component {
                           <img
                             alt="..."
                             className="rounded-circle"
-                            src="assets/img/theme/team-4-800x800.jpg"
+                            src={require("../../assets/img/theme/team-4-800x800.jpg")}
                           />
                         </a>
                       </div>
@@ -158,10 +154,10 @@ class Profile extends React.Component {
               </Card>
             </Container>
           </section>
+        </div>
         <SimpleFooter />
       </>
     );
   }
-}
 
-export default Profile;
+export default Profilee;

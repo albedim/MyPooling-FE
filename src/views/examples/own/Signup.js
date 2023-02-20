@@ -16,6 +16,8 @@
 
 */
 import React, { useState } from "react";
+import { BASE_URL } from '../../../config.ts'
+import { useNavigate } from "react-router-dom";
 
 // reactstrap components
 import {
@@ -33,19 +35,16 @@ import {
   Row,
   Col
 } from "reactstrap";
-
-// core components
-import { BASE_URL } from '../../../config.ts'
-import { DemoNavbar } from "../../../components/Navbars/DemoNavbar";
-import SimpleFooter from "../../../components/Footers/SimpleFooter";
-import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import SimpleFooter from "../../../components/Footers/SimpleFooter";
 import { Alert, Snackbar } from "@mui/material";
 
-export const Signin = () => {
+export const Signup = () => {
 
-  const [loginData, setLoginData] = useState({
+  const [signupData, setSignupData] = useState({
     'email': "",
+    'name': "",
+    'username': "",
     'password': ""
   })
 
@@ -59,37 +58,35 @@ export const Signin = () => {
 
   const navigate = useNavigate()
 
-  const handleLoginData = (e) => {
-    const newLoginData = {...loginData};
-    newLoginData[e.target.name] = e.target.value;
-    setLoginData(newLoginData);
+  const handleSignupnData = (e) => {
+    const newSignupData = {...signupData};
+    newSignupData[e.target.name] = e.target.value;
+    setSignupData(newSignupData);
   }
 
-  const login = async (e) => {
+  const signup = async (e) => {
     setIsLoading(true);
-    await axios.post(BASE_URL + '/user/signin', loginData)
+    await axios.post(BASE_URL + '/user/signup', signupData)
     .then(response => {
       setOpenAlert(true)
-      setMessageAlert("Login effettuato con successo")
+      setMessageAlert("Account creato con successo")
       setTypeAlert("success")
       setTimeout(() => {
         setIsLoading(false)
-        window.localStorage.setItem('token', response.data.param)
-        navigate("/")
+        navigate("/signin")
       }, 2400);
     })
     .catch(error => {
       setOpenAlert(true);
-      setMessageAlert("Credenziali non valide")
+      setMessageAlert("Esiste già un account con queste credeziali")
       setTypeAlert("error")
       setIsLoading(false)
       console.log(error)
     })
   }
-
-  return (
+  
+  return(
     <>
-      <DemoNavbar />
         <section className="section section-shaped section-lg">
           <div className="shape shape-style-1 shape-default">
             <span />
@@ -107,11 +104,11 @@ export const Signin = () => {
                 <Card className="bg-secondary shadow border-0">
                   <CardHeader className="bg-white pb-5">
                     <div className="text-muted text-center mb-3">
-                      <small className="blue-color font-family font-size-16">Sign in with</small>
+                      <small>Sign up with</small>
                     </div>
-                    <div className="btn-wrapper text-center">
+                    <div className="text-center">
                       <Button
-                        className="btn-neutral btn-icon"
+                        className="btn-neutral btn-icon mr-4"
                         color="default"
                         href="#pablo"
                         onClick={(e) => e.preventDefault()}
@@ -119,7 +116,7 @@ export const Signin = () => {
                         <span className="btn-inner--icon mr-1">
                           <img
                             alt="..."
-                            src={require("../../../assets/img/icons/common/github.svg")}
+                            src="assets/img/icons/common/github.svg"
                           />
                         </span>
                         <span className="btn-inner--text">Github</span>
@@ -142,17 +139,37 @@ export const Signin = () => {
                   </CardHeader>
                   <CardBody className="px-lg-5 py-lg-5">
                     <div className="text-center text-muted mb-4">
-                      <small className="font-size-16 font-family blue-color">Or sign in with credentials</small>
+                      <small>Or sign up with credentials</small>
                     </div>
                     <Form role="form">
-                      <FormGroup className="mb-3">
-                        <InputGroup className="input-group-alternative">
+                      <FormGroup>
+                        <InputGroup className="input-group-alternative mb-3">
+                          <InputGroupAddon addonType="prepend">
+                            <InputGroupText>
+                              <i className="ni ni-hat-3" />
+                            </InputGroupText>
+                          </InputGroupAddon>
+                          <Input name="name" value={signupData.name} onChange={(e) => handleSignupnData(e)} placeholder="Name" type="text" />
+                        </InputGroup>
+                      </FormGroup>
+                      <FormGroup>
+                        <InputGroup className="input-group-alternative mb-3">
+                          <InputGroupAddon addonType="prepend">
+                            <InputGroupText>
+                              <i className="ni ni-hat-3" />
+                            </InputGroupText>
+                          </InputGroupAddon>
+                          <Input name="username" value={signupData.username} onChange={(e) => handleSignupnData(e)} placeholder="Username" type="text" />
+                        </InputGroup>
+                      </FormGroup>
+                      <FormGroup>
+                        <InputGroup className="input-group-alternative mb-3">
                           <InputGroupAddon addonType="prepend">
                             <InputGroupText>
                               <i className="ni ni-email-83" />
                             </InputGroupText>
                           </InputGroupAddon>
-                          <Input name='email' value={loginData.email} onChange={(e) => handleLoginData(e)} placeholder="Email" type="email" />
+                          <Input name="email" value={signupData.email} onChange={(e) => handleSignupnData(e)} placeholder="Email" type="email" />
                         </InputGroup>
                       </FormGroup>
                       <FormGroup>
@@ -163,71 +180,69 @@ export const Signin = () => {
                             </InputGroupText>
                           </InputGroupAddon>
                           <Input
-                            name="password"
-                            onChange={(e) => handleLoginData(e)}
+                            name="password" value={signupData.password} onChange={(e) => handleSignupnData(e)}
                             placeholder="Password"
                             type="password"
                             autoComplete="off"
-                            value={loginData.password}
                           />
                         </InputGroup>
                       </FormGroup>
-                      <div className="custom-control custom-control-alternative custom-checkbox">
-                        <input
-                          className="custom-control-input"
-                          id=" customCheckLogin"
-                          type="checkbox"
-                        />
-                        <label
-                          className="custom-control-label"
-                          htmlFor=" customCheckLogin"
-                        >
-                          <span>Remember me</span>
-                        </label>
+                      <div className="text-muted font-italic">
+                        <small>
+                          password strength:{" "}
+                          <span className="text-success font-weight-700">
+                            strong
+                          </span>
+                        </small>
                       </div>
+                      <Row className="my-4">
+                        <Col xs="12">
+                          <div className="custom-control custom-control-alternative custom-checkbox">
+                            <input
+                              className="custom-control-input"
+                              id="customCheckRegister"
+                              type="checkbox"
+                            />
+                            <label
+                              className="custom-control-label"
+                              htmlFor="customCheckRegister"
+                            >
+                              <span>
+                                I agree with the{" "}
+                                <a
+                                  href="#pablo"
+                                  onClick={(e) => e.preventDefault()}
+                                >
+                                  Privacy Policy
+                                </a>
+                              </span>
+                            </label>
+                          </div>
+                        </Col>
+                      </Row>
                       <div className="text-center">
                         <Button
-                          onClick={(e) => login(e)}
-                          className="white-color blue-backgroundcolor my-4"
+                          onClick={(e) => signup(e)}
+                          className="font-family white-color blue-backgroundcolor mt-4"
                           color=""
                           type="button"
                         >
-                          ACCEDI
+                          CREA ACCOUNT
                         </Button>
                       </div>
                     </Form>
                   </CardBody>
                 </Card>
-                <Row className="mt-3">
-                  <Col xs="6">
-                    <a
-                      className="text-light"
-                      href="#pablo"
-                      onClick={(e) => e.preventDefault(e)}
-                    >
-                      <small className="blue-color">Forgot password?</small>
-                    </a>
-                  </Col>
-                  <Col className="text-right" xs="6">
-                    <a
-                      className="text-light"
-                      href="#pablo"
-                      onClick={(e) => e.preventDefault(e)}
-                    >
-                      <small className="blue-color">Create new account</small>
-                    </a>
-                  </Col>
-                </Row>
               </Col>
             </Row>
           </Container>
         </section>
-      <SimpleFooter />
-      <Snackbar anchorOrigin={{ vertical: 'top', horizontal: 'center' }} open={openAlert} autoHideDuration={3000} onClose={(e) => setOpenAlert(false)}>
-        <Alert severity={typeAlert} sx={{ width: '340px' }}>
-          {messageAlert}
-        </Alert>
-      </Snackbar>
+        <SimpleFooter />
+        <Snackbar anchorOrigin={{ vertical: 'top', horizontal: 'center' }} open={openAlert} autoHideDuration={3000} onClose={(e) => setOpenAlert(false)}>
+          <Alert severity={typeAlert} sx={{ width: '340px' }}>
+            {messageAlert}
+          </Alert>
+        </Snackbar>
     </>
   );
 }

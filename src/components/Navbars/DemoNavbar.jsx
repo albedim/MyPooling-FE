@@ -37,6 +37,7 @@ import {
 } from "reactstrap";
 import jwt from 'jwt-decode'
 import BasicMenu from "../../views/examples/own/BasicMenu";
+import { IonIcon } from "react-ion-icon";
 
 export const DemoNavbar = () => {
 
@@ -113,6 +114,7 @@ export const DemoNavbar = () => {
                   ):(
                     <NavItem className="d-none d-lg-block ml-lg-4">
                       <BasicMenu userName={jwt(window.localStorage.getItem('token')).sub.username}/>
+                      <IonIcon name="search" />
                     </NavItem>
                   )
                 }

@@ -5,6 +5,7 @@ import Menu from '@mui/joy/Menu';
 import MenuItem from '@mui/joy/MenuItem';
 import { IonIcon } from 'react-ion-icon';
 import { useNavigate } from 'react-router-dom';
+import jwt from 'jwt-decode';
 
 export default function BasicMenu({userName}) {
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -24,19 +25,17 @@ export default function BasicMenu({userName}) {
   const navigate = useNavigate()
 
   return (
-    <div>
+    <div className='align-center space-around display-flex blue-border border-radius-5 border-smaller'>
       <Button
         id="basic-demo-button"
         aria-controls={open ? 'basic-menu' : undefined}
         aria-haspopup="true"
         aria-expanded={open ? 'true' : undefined}
-        variant="fill"
-        className='font-size-14 font-family'
-        color="neutral"
+        color=""
         onClick={handleClick}
       >
-        <span className='font-size-17 font-family'>{userName}</span>
-        <span className='margin-left-14' ><IonIcon name="chevron-down-outline"/></span>
+        <span className='blue-color font-size-16 font-family'>{userName}</span>
+        <span><IonIcon name="search-outline"/></span>
       </Button>
         <Menu
           id="basic-menu"
@@ -46,7 +45,7 @@ export default function BasicMenu({userName}) {
           onClose={handleClose}
           aria-labelledby="basic-demo-button"
         >
-          <MenuItem style={{fontSize: 15.4, fontWeight: 400, fontFamily: 'League Spartan'}} onClick={() => {navigate("/account"); handleClose()}}>Account</MenuItem>
+          <MenuItem style={{fontSize: 15.4, fontWeight: 400, fontFamily: 'League Spartan'}} onClick={() => {navigate("/profile/"+jwt(window.localStorage.getItem('token')).sub.user_id); handleClose()}}>Account</MenuItem>
           <MenuItem style={{fontSize: 15.4, fontWeight: 400, fontFamily: 'League Spartan'}} onClick={() => {logout(); handleClose()}}>Logout</MenuItem>
         </Menu>
     </div>

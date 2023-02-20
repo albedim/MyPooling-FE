@@ -2,7 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-export const TripComponent = ({owner_username, trip_id, step_id, username, creation_date, used_slots, slots, code}) => {
+export const TripComponent = ({owner_id, trip_id, step_id, username, creation_date, used_slots, slots, code}) => {
 
   const [date, setDate] = useState("");
 
@@ -85,7 +85,7 @@ export const TripComponent = ({owner_username, trip_id, step_id, username, creat
       </div>
       <div className="space-between display-flex height-80">
         <div className="">
-          <div className="display-flex align-center height-34 width-140"><h2 onClick={(e) => navigate("/profile/"+owner_username)} className="font-weight-500 font-size-18 margin-left-40 font-family">@{username}</h2></div>
+          <div className="display-flex align-center height-34 width-140"><h2 onClick={(e) => navigate("/profile/"+owner_id)} className="font-weight-500 font-size-18 margin-left-40 font-family">@{username}</h2></div>
           <div className="align-center display-flex height-24 width-140"><h4 className="font-size-14 font-weight-400 margin-left-40 gray-color font-family">{date}</h4></div>
         </div>
         <div className="display-flex width-160">

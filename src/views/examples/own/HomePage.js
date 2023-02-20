@@ -39,7 +39,7 @@ import {
 } from "reactstrap";
 
 // core components
-import { DemoNavbar } from "../../../components/Navbars/DemoNavbar.js";
+import { DemoNavbar } from "../../../components/Navbars/DemoNavbar";
 
 // index page sections
 import Download from "../../IndexSections/Download.js";
@@ -181,7 +181,7 @@ export const HomePage = () => {
                         <Button
                           className="font-family border-none-i hoverbtn white-color blue-backgroundcolor mt-4"
                           color=""
-                          onClick={(e) => e.preventDefault()}
+                          onClick={(e) => navigate("/signup")}
                         >
                           INIZIA
                         </Button>

@@ -213,7 +213,7 @@ export const SearchSchool = () => {
                   <div className="display-flex align-center overflow-x-scroll width-almost-full">
                   {
                       trips.map((trip) => (
-                        <TripComponent step_id={trip.step.step_id} trip_id={trip.trip_id} username={trip.owner.username} creation_date={trip.creation_date} used_slots={trip.used_slots} slots={trip.slots} code={trip.code}/>
+                        <TripComponent owner_usernam={trip.owner.user_id} step_id={trip.step.step_id} trip_id={trip.trip_id} username={trip.owner.username} creation_date={trip.creation_date} used_slots={trip.used_slots} slots={trip.slots} code={trip.code}/>
                       ))
                   }
                 </div>

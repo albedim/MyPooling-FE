@@ -1,6 +1,5 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { HomePage } from "./views/examples/own/HomePage";
-import Profile from "./views/examples/Profile";
 import Register from "./views/examples/Register";
 import Index from "./views/Index";
 import Login from "./views/examples/Login";
@@ -13,6 +12,9 @@ import { Signin } from "./views/examples/own/Signin";
 import { SearchHome } from "./views/examples/own/SearchHome";
 import { DemoNavbar } from "./components/Navbars/DemoNavbar";
 import { Hero } from "./views/IndexSections/Hero";
+import { Signup } from "./views/examples/own/Signup";
+import { Profile } from "./views/examples/own/Profile";
+import Profilee from "./views/examples/Profilee";
 
 export function App(){
   return(
@@ -22,6 +24,11 @@ export function App(){
           path="/choose"
           exact
           element={<><DemoNavbar/><Hero/></>}
+        />
+        <Route
+          path="/signup"
+          exact
+          element={<><DemoNavbar/><Signup/></>}
         />
          <Route
           path="/go_home"
@@ -44,9 +51,14 @@ export function App(){
           element={<Signin/>}
         />
         <Route
-          path="/profile-page"
+          path="/profile/:username"
           exact
-          render={(props) => <Profile {...props} />}
+          element={<Profile/>}
+        />
+        <Route
+          path="/profilee"
+          exact
+          element={<Profilee/>}
         />
         <Route
           path="/register-page"
