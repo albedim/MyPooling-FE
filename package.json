@@ -20,10 +20,10 @@
     "design-system-react"
   ],
   "author": "Alberto Di Maio",
-  "homepage": "https://albedim.github.io/MyPooling-FE",
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build && gulp licenses",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "install:clean": "rm -rf node_modules/ && rm -rf package-lock.json && npm install && npm start",
