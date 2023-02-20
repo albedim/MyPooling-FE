@@ -31,6 +31,7 @@ import jwt from "jwt-decode";
 import { Menu } from "@mui/material";
 import { Tab, TabList, TabPanel, Tabs } from "@mui/joy";
 import { TripComponent } from "./TripComponent";
+import { Feedback } from "./Feedback";
 
 export const Profile = () => {
 
@@ -51,7 +52,7 @@ export const Profile = () => {
       setUser(response.data)
       getOwnTrips(response.data.user_id)
     })
-    .catch(error => console.log(error))
+    .catch(error => navigate("/page-not-found"))
   }
 
   const getOwnTrips = async (user_id) => {
@@ -193,7 +194,7 @@ export const Profile = () => {
                   </div>
                   <div className="h6 mt-4">
                     <i className="ni business_briefcase-24 mr-2" />
-                    {user.bio != null ? user.bio : "No bio."}
+                    {user.bio != "" ? user.bio : "No bio."}
                   </div>
                 </div>
                 <div className="mt-5 py-5 border-top text-center">
@@ -207,7 +208,7 @@ export const Profile = () => {
                       </TabList>
                       <TabPanel value={1} sx={{ p: 2 }}>
                         <div>
-
+                          <Feedback/>
                         </div>
                       </TabPanel>
                       <TabPanel value={2} sx={{ p: 2 }}>

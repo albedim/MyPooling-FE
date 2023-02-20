@@ -18,7 +18,7 @@ import Profilee from "./views/examples/Profilee";
 
 export function App(){
   return(
-    <BrowserRouter>
+    <BrowserRouter basename="/MyPooling-FE">
       <Routes>
         <Route
           path="/choose"
@@ -56,14 +56,9 @@ export function App(){
           element={<Profile/>}
         />
         <Route
-          path="/profilee"
+          path="/page-not-found"
           exact
-          element={<Profilee/>}
-        />
-        <Route
-          path="/register-page"
-          exact
-          render={(props) => <Register {...props} />}
+          element={<h2>Not found</h2>}
         />
       </Routes>
     </BrowserRouter>

@@ -43,6 +43,9 @@ export const Signup = () => {
 
   const [signupData, setSignupData] = useState({
     'email': "",
+    'age': 0,
+    'bio': null,
+    'place': "",
     'name': "",
     'username': "",
     'password': ""
@@ -166,6 +169,46 @@ export const Signup = () => {
                         <InputGroup className="input-group-alternative mb-3">
                           <InputGroupAddon addonType="prepend">
                             <InputGroupText>
+                              <i className="ni ni-hat-3" />
+                            </InputGroupText>
+                          </InputGroupAddon>
+                          <Input name="age" value={signupData.age} onChange={(e) => handleSignupnData(e)} placeholder="Anni" type="number" />
+                        </InputGroup>
+                      </FormGroup>
+                      <FormGroup>
+                        <InputGroup className="input-group-alternative mb-3">
+                          <InputGroupAddon addonType="prepend">
+                            <InputGroupText>
+                              <i className="ni ni-hat-3" />
+                            </InputGroupText>
+                          </InputGroupAddon>
+                          <Input name="bio" value={signupData.bio} onChange={(e) => handleSignupnData(e)} placeholder="Dicci di più su di te" type="text" />
+                        </InputGroup>
+                      </FormGroup>
+                      <FormGroup>
+                        <InputGroup className="input-group-alternative mb-3">
+                          <InputGroupAddon addonType="prepend">
+                            <InputGroupText>
+                              <i className="ni ni-hat-3" />
+                            </InputGroupText>
+                          </InputGroupAddon>
+                          <Input name="place" value={signupData.place} onChange={(e) => handleSignupnData(e)} placeholder="Dove abiti?" type="text" />
+                        </InputGroup>
+                      </FormGroup>
+                      <FormGroup>
+                        <InputGroup className="input-group-alternative mb-3">
+                          <InputGroupAddon addonType="prepend">
+                            <InputGroupText>
+                              <i className="ni ni-hat-3" />
+                            </InputGroupText>
+                          </InputGroupAddon>
+                          <Input name="name" value={signupData.name} onChange={(e) => handleSignupnData(e)} placeholder="Name" type="text" />
+                        </InputGroup>
+                      </FormGroup>
+                      <FormGroup>
+                        <InputGroup className="input-group-alternative mb-3">
+                          <InputGroupAddon addonType="prepend">
+                            <InputGroupText>
                               <i className="ni ni-email-83" />
                             </InputGroupText>
                           </InputGroupAddon>
@@ -221,7 +264,19 @@ export const Signup = () => {
                         </Col>
                       </Row>
                       <div className="text-center">
-                        <Button
+                        { signupData.name == "" || signupData.email == "" ||signupData.age == 0 
+                        || signupData.username == "" || signupData.place == "" 
+                        || signupData.password == "" ? (
+
+                          <Button
+                            className="opacity-40 font-family white-color blue-backgroundcolor mt-4"
+                            color=""
+                            type="button"
+                          >
+                          CREA ACCOUNT
+                        </Button>
+                        ):(
+                          <Button
                           onClick={(e) => signup(e)}
                           className="font-family white-color blue-backgroundcolor mt-4"
                           color=""
@@ -229,6 +284,8 @@ export const Signup = () => {
                         >
                           CREA ACCOUNT
                         </Button>
+                        )  
+                      }
                       </div>
                     </Form>
                   </CardBody>
