@@ -1,16 +1,26 @@
 {
   "files": {
-    "main.css": "/MyPooling-FE/static/css/main.e6d01ac0.css",
-    "main.js": "/MyPooling-FE/static/js/main.451881d2.js",
-    "static/js/787.343ddc04.chunk.js": "/MyPooling-FE/static/js/787.343ddc04.chunk.js",
-    "static/media/logo.svg": "/MyPooling-FE/static/media/logo.6ce24c58023cc2f8fd88fe9d219db6c6.svg",
+    "main.css": "/MyPooling-FE/static/css/main.2cc153e6.css",
+    "main.js": "/MyPooling-FE/static/js/main.b3e0fa4d.js",
+    "static/media/fontawesome-webfont.svg?v=4.7.0": "/MyPooling-FE/static/media/fontawesome-webfont.c1e38fd9e0e74ba58f7a.svg",
+    "static/media/fontawesome-webfont.eot": "/MyPooling-FE/static/media/fontawesome-webfont.8b43027f47b20503057d.eot",
+    "static/media/fontawesome-webfont.ttf?v=4.7.0": "/MyPooling-FE/static/media/fontawesome-webfont.1e59d2330b4c6deb84b3.ttf",
+    "static/media/nucleo-icons.svg": "/MyPooling-FE/static/media/nucleo-icons.01ebecaf50461162d4bc.svg",
+    "static/media/team-4-800x800.jpg": "/MyPooling-FE/static/media/team-4-800x800.99c612eb60728a5aeeb0.jpg",
+    "static/media/fontawesome-webfont.woff?v=4.7.0": "/MyPooling-FE/static/media/fontawesome-webfont.f691f37e57f04c152e23.woff",
+    "static/media/fontawesome-webfont.woff2?v=4.7.0": "/MyPooling-FE/static/media/fontawesome-webfont.20fd1704ea223900efa9.woff2",
+    "static/media/nucleo-icons.eot": "/MyPooling-FE/static/media/nucleo-icons.19abb5402a664606b14c.eot",
+    "static/media/nucleo-icons.ttf": "/MyPooling-FE/static/media/nucleo-icons.d6a66724e7a7bf1bba65.ttf",
+    "static/media/icon.png": "/MyPooling-FE/static/media/icon.a54e35fa48d2b8cbcb85.png",
+    "static/media/nucleo-icons.woff": "/MyPooling-FE/static/media/nucleo-icons.c82c9b7c40130b7116d3.woff",
+    "static/media/nucleo-icons.woff2": "/MyPooling-FE/static/media/nucleo-icons.cba267483aa6a7cb6e33.woff2",
+    "static/media/github.svg": "/MyPooling-FE/static/media/github.6c95555646a0ecabf549179c97bf0e7d.svg",
     "index.html": "/MyPooling-FE/index.html",
-    "main.e6d01ac0.css.map": "/MyPooling-FE/static/css/main.e6d01ac0.css.map",
-    "main.451881d2.js.map": "/MyPooling-FE/static/js/main.451881d2.js.map",
-    "787.343ddc04.chunk.js.map": "/MyPooling-FE/static/js/787.343ddc04.chunk.js.map"
+    "main.2cc153e6.css.map": "/MyPooling-FE/static/css/main.2cc153e6.css.map",
+    "main.b3e0fa4d.js.map": "/MyPooling-FE/static/js/main.b3e0fa4d.js.map"
   },
   "entrypoints": [
-    "static/css/main.e6d01ac0.css",
-    "static/js/main.451881d2.js"
+    "static/css/main.2cc153e6.css",
+    "static/js/main.b3e0fa4d.js"
   ]
 }
