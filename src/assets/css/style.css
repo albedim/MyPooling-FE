@@ -5,7 +5,7 @@
   background-color: white !important;
 }
 .blue-backgroundcolor {
-  background-color: rgb(88, 157, 248) !important;
+  background-color: #589df8 !important;
 }
 .white-color {
   color: rgb(255, 255, 255) !important;
@@ -13,7 +13,7 @@
 
 .box-shadow{
   -webkit-box-shadow: 2px 5px 12px -5px rgba(110,110,110,0.52); 
-  box-shadow: 2px 5px 12px -5px rgba(110,110,110,0.14);
+  box-shadow: 2px 3px 12px 0px rgba(110,110,110,0.14);
 }
 
 .gray-backgroundcolor{
@@ -29,7 +29,7 @@
 }
 
 .gray-color{
-  color: #c0c0c0;
+  color: #bfbfbf;
 }
 
 .dark-gray-color{
@@ -130,4 +130,28 @@
 
 .black-color{
   color: black;
+}
+
+.gray-gray-backgroundcolor{
+  background-color: #fafafa;
+}
+
+.green-color{
+  color: #69e896;
+}
+
+.red-color{
+  color: #e86868;
+}
+
+.yellow-color{
+  color: #e8c668;
+}
+
+.yellow-green-color{
+  color: #c6e868;
+}
+
+.outline-none-i{
+  outline: none !important;
 }

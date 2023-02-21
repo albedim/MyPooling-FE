@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { QontoStepIcon } from "./QontoStepicon";
 
-export const OwnTrip = ({code, departure_date, mode, slots, steps}) => {
+export const RidingTrip = ({code, creator, departure_date, mode, slots}) => {
 
   const [departureDate, setDepartureDate] = useState("")
 
@@ -18,8 +18,8 @@ export const OwnTrip = ({code, departure_date, mode, slots, steps}) => {
   },[])
 
   return(
-    <div className="align-center space-around display-flex height-380">
-      <div className="height-340"> 
+    <div className="align-center space-around display-flex height-280">
+      <div className="height-284"> 
         <div className="box-shadow border-radius-5 height-240 width-340">
           <div className="display-flex space-between align-center height-74">
             <div className="display-flex align-center width-140"><span className="font-weight-600 font-size-20 margin-left-34 blue-color font-family">#{code}</span></div>
@@ -33,7 +33,7 @@ export const OwnTrip = ({code, departure_date, mode, slots, steps}) => {
           <div className="space-between display-flex height-80">
             <div className="align-center width-164 space-around display-flex">
               <div className="width-98">
-                <div className="display-flex align-center height-34 width-140"><h2 className="font-weight-500 font-size-16 font-family">Creato da te</h2></div>
+                <div className="display-flex align-center height-34 width-140"><span className="font-weight-500 font-size-16 font-family">Creato da <span onClick={(e) => {window.location.href = '/MyPooling-FE/profile/'+creator}} className="hover font-weight-600 font-size-16 font-family">@{creator}</span></span></div>
                 <div className="align-center display-flex height-24 width-140"><h4 className="font-size-14 font-weight-400 gray-color font-family">{departureDate}</h4></div>
               </div>
             </div>
@@ -49,29 +49,7 @@ export const OwnTrip = ({code, departure_date, mode, slots, steps}) => {
               </div>
             </div>
           </div>
-        </div>
-        <div className="margin-top-24 width-340">
-        <Stepper activeStep={steps.length + 1} alternativeLabel>
-          {
-            mode == 'home' ? (
-              <Step style={{color: 'red'}} key={0}>
-                <StepLabel><span className="font-family">Casa</span></StepLabel>
-              </Step>
-            ):(
-              <Step style={{color: 'red'}} key={0}>
-                <StepLabel><span className="font-family">ITIS Giordani Striano</span></StepLabel>
-              </Step>
-            )
-          }
-          {
-            steps.map(step => (
-              <Step style={{color: 'red'}} key={step.step_id}>
-                <StepLabel><span className="font-family">{step.name}</span></StepLabel>
-              </Step>
-            ))
-          }
-        </Stepper>
-        </div>
+      </div>
       </div>
     </div>
   );

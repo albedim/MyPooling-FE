@@ -66,6 +66,7 @@ export const SearchHome = () => {
     console.log(place.lat, place.lon)
     await axios.get(BASE_URL + `/trip/get/near?x=${parseFloat(place.lat)}&y=${parseFloat(place.lon)}&strength=${request.strength}&departure_date=${request.departure_date.replaceAll("-",",")}&mode=home`)
     .then(response => {
+      console.log(response.data)
       setTrips(response.data);
     })
     .catch(error => console.log(error));

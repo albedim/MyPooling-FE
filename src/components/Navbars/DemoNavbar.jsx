@@ -38,6 +38,7 @@ import {
 import jwt from 'jwt-decode'
 import BasicMenu from "../../views/examples/own/BasicMenu";
 import { IonIcon } from "react-ion-icon";
+import { Notifications } from "react-ionicons";
 
 export const DemoNavbar = () => {
 
@@ -89,7 +90,7 @@ export const DemoNavbar = () => {
                     id="tooltip333589074"
                     target="_blank"
                   >
-                  <i className="fa fa-facebook-square" />
+                  <Notifications style={{width: 18}} color={"white"}></Notifications>
                   <span className="nav-link-inner--text d-lg-none ml-2">
                     Facebook
                   </span>

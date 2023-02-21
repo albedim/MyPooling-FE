@@ -41,6 +41,7 @@ import SimpleFooter from "../../../components/Footers/SimpleFooter";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { Alert, Snackbar } from "@mui/material";
+import { SpinnerCircular } from "spinners-react";
 
 export const Signin = () => {
 
@@ -186,14 +187,36 @@ export const Signin = () => {
                         </label>
                       </div>
                       <div className="text-center">
-                        <Button
-                          onClick={(e) => login(e)}
-                          className="white-color blue-backgroundcolor my-4"
-                          color=""
-                          type="button"
-                        >
-                          ACCEDI
-                        </Button>
+                        {
+                          loginData.email == "" || loginData.password == "" ? (
+                            <Button
+                            className="opacity-40 white-color blue-backgroundcolor my-4"
+                            color=""
+                            type="button"
+                          >
+                            ACCEDI
+                          </Button>
+                          ):(
+                            isLoading ? (
+                              <Button
+                              className="white-color blue-backgroundcolor my-4"
+                              color=""
+                              type="button"
+                            >
+                              <SpinnerCircular size={20} color='#589df8' thickness={200} secondaryColor={'white'} />
+                            </Button>
+                            ):(
+                              <Button
+                              onClick={(e) => login(e)}
+                              className="white-color blue-backgroundcolor my-4"
+                              color=""
+                              type="button"
+                              >
+                                ACCEDI
+                              </Button>
+                            )
+                          )
+                        }
                       </div>
                     </Form>
                   </CardBody>

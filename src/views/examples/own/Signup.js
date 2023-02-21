@@ -38,6 +38,7 @@ import {
 import axios from "axios";
 import SimpleFooter from "../../../components/Footers/SimpleFooter";
 import { Alert, Snackbar } from "@mui/material";
+import { SpinnerCircular } from "spinners-react";
 
 export const Signup = () => {
 
@@ -199,16 +200,6 @@ export const Signup = () => {
                         <InputGroup className="input-group-alternative mb-3">
                           <InputGroupAddon addonType="prepend">
                             <InputGroupText>
-                              <i className="ni ni-hat-3" />
-                            </InputGroupText>
-                          </InputGroupAddon>
-                          <Input name="name" value={signupData.name} onChange={(e) => handleSignupnData(e)} placeholder="Name" type="text" />
-                        </InputGroup>
-                      </FormGroup>
-                      <FormGroup>
-                        <InputGroup className="input-group-alternative mb-3">
-                          <InputGroupAddon addonType="prepend">
-                            <InputGroupText>
                               <i className="ni ni-email-83" />
                             </InputGroupText>
                           </InputGroupAddon>
@@ -276,14 +267,24 @@ export const Signup = () => {
                           CREA ACCOUNT
                         </Button>
                         ):(
-                          <Button
-                          onClick={(e) => signup(e)}
-                          className="font-family white-color blue-backgroundcolor mt-4"
-                          color=""
-                          type="button"
-                        >
-                          CREA ACCOUNT
-                        </Button>
+                          isLoading ? (
+                            <Button
+                            className="font-family white-color blue-backgroundcolor mt-4"
+                            color=""
+                            type="button"
+                            >
+                              <SpinnerCircular size={20} color='#589df8' thickness={200} secondaryColor={'white'} />
+                            </Button>
+                          ):(
+                            <Button
+                            onClick={(e) => signup(e)}
+                            className="font-family white-color blue-backgroundcolor mt-4"
+                            color=""
+                            type="button"
+                            >
+                              CREA ACCOUNT
+                            </Button>
+                          )
                         )  
                       }
                       </div>

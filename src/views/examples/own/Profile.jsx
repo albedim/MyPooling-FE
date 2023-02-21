@@ -27,15 +27,25 @@ import SimpleFooter from "../../../components/Footers/SimpleFooter";
 import Avatar from "boring-avatars";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
+import QontoConnector from './QontoConnector'
 import jwt from "jwt-decode";
-import { Menu } from "@mui/material";
+import { Menu, Step, StepButton, StepContent, StepIcon, StepLabel, Stepper, StepperContext, tabClasses } from "@mui/material";
 import { Tab, TabList, TabPanel, Tabs } from "@mui/joy";
 import { TripComponent } from "./TripComponent";
 import { Feedback } from "./Feedback";
+import { OwnTrip } from "./OwnTrip";
+import { RidingTrip } from "./RidingTrip";
+import TabsVariants from "./TabsVariants";
 
 export const Profile = () => {
 
   const username = useParams().username;
+
+  const [index, setIndex] = useState('feedbacks')
+
+  const [ridingTrips, setRidingTrips] = useState([])
+
+  const [feedbacks, setFeedbacks] = useState([])
 
   const [ownTrips, setOwnTrips] = useState([])
 
@@ -59,7 +69,25 @@ export const Profile = () => {
     await axios.get(BASE_URL + '/trip/get/own/'+ user_id)
     .then(response => {
       setOwnTrips(response.data)
+      getFeedbacks(user_id)
+    })
+    .catch(error => console.log(error))
+  }
+
+    const getRidingTrips = async (user_id) => {
+    await axios.get(BASE_URL + '/trip/get/riding/'+ user_id)
+    .then(response => {
+      setRidingTrips(response.data)
       setIsLoading(false)
+    })
+    .catch(error => console.log(error))
+  }
+
+  const getFeedbacks = async (user_id) => {
+    await axios.get(BASE_URL + '/feedback/get/'+ user_id)
+    .then(response => {
+      setFeedbacks(response.data)
+      getRidingTrips(user_id)
     })
     .catch(error => console.log(error))
   }
@@ -167,16 +195,33 @@ export const Profile = () => {
                       ):(
                         <div className="card-profile-stats d-flex justify-content-center">
                       <div>
-                        <span className="heading">{user.average_stars}</span>
+                        <span className="heading">
+                          {
+                            user.average_stars >= 0 && user.average_stars <= 1 &&
+                              <span className="red-color">PESSIMA</span>
+                          }
+                          {
+                            user.average_stars >= 2 && user.average_stars < 3 &&
+                              <span className="yellow-color">MEDIOCRE</span>
+                          }
+                          {
+                            user.average_stars >= 3 && user.average_stars < 4 &&
+                              <span className="yellow-green-color">BUONA</span>
+                          }
+                          {
+                            user.average_stars >= 4 &&
+                              <span className="green-color">OTTIMA</span>
+                          }
+                        </span>
                         <span className="description">Valutazione</span>
                       </div>
                       <div>
                         <span className="heading">{user.more_information.own_trips}</span>
-                        <span className="description">Passaggi dati</span>
+                        <div><span className="description">Offerti</span></div>
                       </div>
                       <div>
                         <span className="heading">{user.more_information.riding_trips}</span>
-                        <span className="description">Passaggi ricevuti</span>
+                        <span className="description">Ricevuti</span>
                       </div>
                     </div>
                       )
@@ -200,25 +245,63 @@ export const Profile = () => {
                 <div className="mt-5 py-5 border-top text-center">
                   <Row className="justify-content-center">
                     <Col lg="9">
-                    <Tabs>
-                      <TabList defaultValue={1} variant="plain" color="primary">
-                        <Tab value={1}>Valutazioni</Tab>
-                        <Tab value={2}>Passaggi dati</Tab>
-                        <Tab value={3}>Passaggi ricevuti</Tab>
-                      </TabList>
-                      <TabPanel value={1} sx={{ p: 2 }}>
-                        <div>
-                          <Feedback/>
-                        </div>
-                      </TabPanel>
-                      <TabPanel value={2} sx={{ p: 2 }}>
-                        <div>
-
-                        </div>
-                      </TabPanel>
-                      <TabPanel value={3} sx={{ p: 2 }}>
-                        <b>Third</b> tab panel
-                      </TabPanel>
+                    <Tabs value={index} onChange={(event, value) => setIndex(value)} aria-label="Basic tabs" defaultValue={1} sx={{ borderRadius: 'lg' }}>
+                      <div className="height-80">
+                        <TabList className="box-shadow" variant="plain" color="primary">
+                          {
+                            index == 'feedbacks' ? (
+                              <Tab className="outline-none-i border-none-i white-color blue-backgroundcolor" color="primary" value={'feedbacks'}><span className="font-family">Valutazione</span></Tab>
+                            ):(
+                              <Tab color="primary" value={'feedbacks'}><span className="font-family">Valutazione</span></Tab>
+                            )
+                          }
+                          {
+                            index == 'ownTrips' ? (
+                              <Tab className="outline-none-i white-color blue-backgroundcolor" sx={{backgroundColor: 'blue'}} color="primary" value={'ownTrips'}><span className="font-family">Passaggi dati</span></Tab>
+                            ):(
+                              <Tab color="primary" value={'ownTrips'}><span className="font-family">Passaggi dati</span></Tab>
+                            )
+                          }
+                          {
+                            index == 'ridingTrips' ? (
+                              <Tab className="outline-none-i white-color blue-backgroundcolor" sx={{backgroundColor: 'blue'}} color="primary" value={'ridingTrips'}><span className="font-family">Passaggi ricevuti</span></Tab>
+                            ):(
+                              <Tab color="primary" value={'ridingTrips'}><span className="font-family">Passaggi ricevuti</span></Tab>
+                            )
+                          }
+                        </TabList>
+                      </div>
+                      <div className="overflow-x-hidden overflow-y-scroll max-height-740 ">
+                        <TabPanel value={'feedbacks'} sx={{ p: 2 }}>
+                          <div className="space-around display-flex">
+                            <div>
+                              {
+                                feedbacks.map(feedback => (
+                                  <Feedback anonymous={feedback.anonymous} thought={feedback.thought} stars={feedback.stars} creator={feedback.creator} />
+                                ))
+                              }
+                            </div>
+                          </div>
+                        </TabPanel>
+                        <TabPanel value={'ownTrips'} sx={{ p: 2 }}>
+                          <div>
+                            {
+                              ownTrips.map(ownTrip => (
+                                <OwnTrip code={ownTrip.code} departure_date={ownTrip.departure_date} slots={ownTrip.slots} mode={ownTrip.mode} steps={ownTrip.steps}/>
+                              ))
+                            }
+                          </div>
+                        </TabPanel>
+                        <TabPanel value={'ridingTrips'} sx={{ p: 2 }}>
+                          <div>
+                            {
+                              ridingTrips.map(ridingTrip => (
+                                <RidingTrip code={ridingTrip.code} creator={ridingTrip.owner.username} departure_date={ridingTrip.departure_date} slots={ridingTrip.slots} mode={ridingTrip.mode} steps={ridingTrip.steps}/>
+                              ))
+                            }
+                          </div>
+                        </TabPanel>
+                      </div>
                     </Tabs>
                     </Col>
                   </Row>
