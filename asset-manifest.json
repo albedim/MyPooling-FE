@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/MyPooling-FE/static/css/main.ea94768d.css",
-    "main.js": "/MyPooling-FE/static/js/main.9b920b9c.js",
+    "main.js": "/MyPooling-FE/static/js/main.48216d68.js",
     "static/media/fontawesome-webfont.svg?v=4.7.0": "/MyPooling-FE/static/media/fontawesome-webfont.c1e38fd9e0e74ba58f7a.svg",
     "static/media/fontawesome-webfont.eot": "/MyPooling-FE/static/media/fontawesome-webfont.8b43027f47b20503057d.eot",
     "static/media/fontawesome-webfont.ttf?v=4.7.0": "/MyPooling-FE/static/media/fontawesome-webfont.1e59d2330b4c6deb84b3.ttf",
@@ -17,10 +17,10 @@
     "static/media/github.svg": "/MyPooling-FE/static/media/github.6c95555646a0ecabf549179c97bf0e7d.svg",
     "index.html": "/MyPooling-FE/index.html",
     "main.ea94768d.css.map": "/MyPooling-FE/static/css/main.ea94768d.css.map",
-    "main.9b920b9c.js.map": "/MyPooling-FE/static/js/main.9b920b9c.js.map"
+    "main.48216d68.js.map": "/MyPooling-FE/static/js/main.48216d68.js.map"
   },
   "entrypoints": [
     "static/css/main.ea94768d.css",
-    "static/js/main.9b920b9c.js"
+    "static/js/main.48216d68.js"
   ]
 }
