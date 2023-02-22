@@ -45,7 +45,11 @@ export default function BasicMenu({userName}) {
           onClose={handleClose}
           aria-labelledby="basic-demo-button"
         >
-          <MenuItem style={{fontSize: 15.4, fontWeight: 400, fontFamily: 'League Spartan'}} onClick={() => {navigate("/profile/"+jwt(window.localStorage.getItem('token')).sub.username); handleClose()}}>Account</MenuItem>
+          <MenuItem 
+            style={{fontSize: 15.4, fontWeight: 400, fontFamily: 'League Spartan'}} 
+            onClick={() => {window.location.href = "/MyPooling-FE/profile/"+jwt(window.localStorage.getItem('token')).sub.username; 
+            handleClose()
+          }}>Account</MenuItem>
           <MenuItem style={{fontSize: 15.4, fontWeight: 400, fontFamily: 'League Spartan'}} onClick={() => {logout(); handleClose()}}>Logout</MenuItem>
         </Menu>
     </div>

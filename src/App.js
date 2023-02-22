@@ -14,7 +14,7 @@ import { DemoNavbar } from "./components/Navbars/DemoNavbar";
 import { Hero } from "./views/IndexSections/Hero";
 import { Signup } from "./views/examples/own/Signup";
 import { Profile } from "./views/examples/own/Profile";
-import Profilee from "./views/examples/Profilee";
+import { NotFound } from "./views/examples/own/NotFound";
 
 export function App(){
   return(
@@ -58,7 +58,7 @@ export function App(){
         <Route
           path="/page-not-found"
           exact
-          element={<h2>Not found</h2>}
+          element={<NotFound page={true}/>}
         />
       </Routes>
     </BrowserRouter>

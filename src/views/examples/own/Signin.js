@@ -42,6 +42,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { Alert, Snackbar } from "@mui/material";
 import { SpinnerCircular } from "spinners-react";
+import { Loading } from "./Loading";
 
 export const Signin = () => {
 
@@ -80,16 +81,26 @@ export const Signin = () => {
       }, 2400);
     })
     .catch(error => {
-      setOpenAlert(true);
-      setMessageAlert("Credenziali non valide")
-      setTypeAlert("error")
-      setIsLoading(false)
-      console.log(error)
+      if(error.response.code == 404){
+        setOpenAlert(true);
+        setMessageAlert("Credenziali non valide")
+        setTypeAlert("error")
+        setIsLoading(false)
+      }else{
+        setOpenAlert(true);
+        setMessageAlert("Errore con il server")
+        setTypeAlert("error")
+        setIsLoading(false)
+      }
     })
   }
 
   return (
     <>
+      {
+        isLoading &&
+          <Loading/>
+      }
       <DemoNavbar />
         <section className="section section-shaped section-lg">
           <div className="shape shape-style-1 shape-default">
@@ -197,24 +208,14 @@ export const Signin = () => {
                             ACCEDI
                           </Button>
                           ):(
-                            isLoading ? (
-                              <Button
-                              className="white-color blue-backgroundcolor my-4"
-                              color=""
-                              type="button"
+                            <Button
+                            onClick={(e) => login(e)}
+                            className="white-color blue-backgroundcolor my-4"
+                            color=""
+                            type="button"
                             >
-                              <SpinnerCircular size={20} color='#589df8' thickness={200} secondaryColor={'white'} />
+                              ACCEDI
                             </Button>
-                            ):(
-                              <Button
-                              onClick={(e) => login(e)}
-                              className="white-color blue-backgroundcolor my-4"
-                              color=""
-                              type="button"
-                              >
-                                ACCEDI
-                              </Button>
-                            )
                           )
                         }
                       </div>
@@ -235,7 +236,7 @@ export const Signin = () => {
                     <a
                       className="text-light"
                       href="#pablo"
-                      onClick={(e) => e.preventDefault(e)}
+                      onClick={(e) => navigate("/signup")}
                     >
                       <small className="blue-color">Create new account</small>
                     </a>

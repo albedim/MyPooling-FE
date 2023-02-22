@@ -66,7 +66,7 @@
 }
 
 ::placeholder{
-  color: black;
+  color: gray;
 }
 
 .opacity-background{
@@ -154,4 +154,12 @@
 
 .outline-none-i{
   outline: none !important;
+}
+
+::-webkit-scrollbar{
+  width: 0px;
+}
+
+.gray-border{
+  border-color: rgb(207, 207, 207);
 }

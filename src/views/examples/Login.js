@@ -37,6 +37,7 @@ import {
 // core components
 import { DemoNavbar } from "../../components/Navbars/DemoNavbar";
 import SimpleFooter from "../../components/Footers/SimpleFooter";
+import { Loading } from "./own/Loading";
 
 class Login extends React.Component {
   componentDidMount() {

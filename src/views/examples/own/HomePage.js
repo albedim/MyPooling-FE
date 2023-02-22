@@ -44,6 +44,7 @@ import { DemoNavbar } from "../../../components/Navbars/DemoNavbar";
 // index page sections
 import Download from "../../IndexSections/Download.js";
 import { Navigate, useNavigate } from "react-router-dom";
+import { Rating } from "@mui/material";
 
 export const HomePage = () => {
 

@@ -4,6 +4,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { QontoStepIcon } from "./QontoStepicon";
+import { ISTITUTE_NAME } from "../../../config.ts";
 
 export const OwnTrip = ({code, departure_date, mode, slots, steps}) => {
 
@@ -55,18 +56,18 @@ export const OwnTrip = ({code, departure_date, mode, slots, steps}) => {
           {
             mode == 'home' ? (
               <Step style={{color: 'red'}} key={0}>
-                <StepLabel><span className="font-family">Casa</span></StepLabel>
+                <StepLabel><span className="font-weight-600 font-family">CASA</span></StepLabel>
               </Step>
             ):(
               <Step style={{color: 'red'}} key={0}>
-                <StepLabel><span className="font-family">ITIS Giordani Striano</span></StepLabel>
+                <StepLabel><span className="font-weight-600 font-family">{ISTITUTE_NAME.toUpperCase()}</span></StepLabel>
               </Step>
             )
           }
           {
             steps.map(step => (
               <Step style={{color: 'red'}} key={step.step_id}>
-                <StepLabel><span className="font-family">{step.name}</span></StepLabel>
+                <StepLabel><span className="font-weight-500 font-family">{step.name}</span></StepLabel>
               </Step>
             ))
           }
