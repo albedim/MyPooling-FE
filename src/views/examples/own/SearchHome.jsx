@@ -16,6 +16,8 @@ export const SearchHome = () => {
 
   const [place, setPlace] = useState("");
 
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
   const navigate = useNavigate();
 
   const [trips, setTrips] = useState([]);
@@ -74,20 +76,23 @@ export const SearchHome = () => {
   }
 
   // Token validation
-  
-  useEffect(() => {
+
+  const validateToken = () => {
     if(window.localStorage.getItem('token') == null){
       navigate("/signin")
     }else{
       axios.get(BASE_URL + '/user/session_check?jwt='+window.localStorage.getItem('token'))
       .then(response => {
-        
+        return;
       })
       .catch(error => {
+        window.localStorage.removeItem("token")
         navigate("/signin")
       })
     }
-  },[])
+  }
+  
+  useEffect(() => validateToken(), [])
 
   return(
     <div className="width-full height-full">
@@ -158,9 +163,9 @@ export const SearchHome = () => {
                                 getPlaces();
                                 setHasSelected(false);
                               }} 
-                              className="hover font-weight-700 font-size-24"><button>Ok</button></span>
+                              className="hover font-weight-700 font-size-24"><button className="outline-none hover height-34 font-size-14 align-center display-flex space-around border-radius-5 border-none font-family white-color width-64 blue-backgroundcolor">CERCA</button></span>
                           ):(
-                            <span className="opacity-40 font-weight-700 font-size-24"><button>ok</button></span>
+                            <span className="opacity-40 font-weight-700 font-size-24"><button className="outline-none opacity-40 height-34 font-size-14 align-center display-flex space-around border-radius-5 border-none font-family white-color width-64 blue-backgroundcolor">CERCA</button></span>
                           )
                         }
                       </div>

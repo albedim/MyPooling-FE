@@ -15,7 +15,7 @@
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 */
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link, Navigate, useNavigate } from "react-router-dom";
 import {
   Button,
@@ -39,10 +39,32 @@ import jwt from 'jwt-decode'
 import BasicMenu from "../../views/examples/own/BasicMenu";
 import { IonIcon } from "react-ion-icon";
 import { Notifications } from "react-ionicons";
+import Notification from "../../views/examples/own/Notification";
+import axios from "axios";
+import { BASE_URL } from "../../config.ts";
 
 export const DemoNavbar = () => {
 
   const navigate = useNavigate();
+
+  const [isLoggedIn, setIsLoggedIn] = useState(false)
+
+  const validateToken = () => {
+    if(window.localStorage.getItem('token') == null){
+      setIsLoggedIn(false)
+    }else{
+      axios.get(BASE_URL + '/user/session_check?jwt='+window.localStorage.getItem('token'))
+      .then(response => {
+        setIsLoggedIn(true)
+      })
+      .catch(error => {
+        window.localStorage.removeItem("token")
+        setIsLoggedIn(false)
+      })
+    }
+  }
+
+  useEffect(() => validateToken(), [])
 
   return (
     <>
@@ -84,23 +106,8 @@ export const DemoNavbar = () => {
                 </Row>
               </div>
               <Nav className="align-items-lg-center ml-lg-auto" navbar>
-                <NavItem>
-                  <NavLink
-                    className="nav-link-icon"
-                    id="tooltip333589074"
-                    target="_blank"
-                  >
-                  <Notifications style={{width: 18}} color={"white"}></Notifications>
-                  <span className="nav-link-inner--text d-lg-none ml-2">
-                    Facebook
-                  </span>
-                  </NavLink>
-                  <UncontrolledTooltip delay={0} target="tooltip333589074">
-                    Le tue notifiche
-                  </UncontrolledTooltip>
-                </NavItem>
                 {
-                  window.localStorage.getItem('token') == null ? (
+                  !isLoggedIn ? (
                     <NavItem className="d-none d-lg-block ml-lg-4">
                       <Button
                       onClick={(e) => navigate("/signin")}
@@ -113,10 +120,27 @@ export const DemoNavbar = () => {
                       </Button>
                     </NavItem>
                   ):(
-                    <NavItem className="d-none d-lg-block ml-lg-4">
-                      <BasicMenu userName={jwt(window.localStorage.getItem('token')).sub.username}/>
-                      <IonIcon name="search" />
-                    </NavItem>
+                    <>
+                      <NavItem>
+                        <NavLink
+                          className="nav-link-icon"
+                          id="tooltip333589074"
+                          target="_blank"
+                        >
+                        <Notification/>
+                        <span className="nav-link-inner--text d-lg-none ml-2">
+                          Facebook
+                        </span>
+                        </NavLink>
+                        <UncontrolledTooltip delay={0} target="tooltip333589074">
+                          Le tue notifiche
+                        </UncontrolledTooltip>
+                      </NavItem>
+                      <NavItem className="d-none d-lg-block ml-lg-4">
+                        <BasicMenu userName={jwt(window.localStorage.getItem('token')).sub.username}/>
+                        <IonIcon name="search" />
+                      </NavItem>
+                    </>
                   )
                 }
               </Nav>

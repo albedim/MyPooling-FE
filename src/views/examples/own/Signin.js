@@ -68,6 +68,7 @@ export const Signin = () => {
   }
 
   const login = async (e) => {
+    console.log(loginData)
     setIsLoading(true);
     await axios.post(BASE_URL + '/user/signin', loginData)
     .then(response => {
@@ -81,17 +82,10 @@ export const Signin = () => {
       }, 2400);
     })
     .catch(error => {
-      if(error.response.code == 404){
-        setOpenAlert(true);
-        setMessageAlert("Credenziali non valide")
-        setTypeAlert("error")
-        setIsLoading(false)
-      }else{
-        setOpenAlert(true);
-        setMessageAlert("Errore con il server")
-        setTypeAlert("error")
-        setIsLoading(false)
-      }
+      setOpenAlert(true);
+      setMessageAlert("Credenziali non valide")
+      setTypeAlert("error")
+      setIsLoading(false)
     })
   }
 
@@ -119,43 +113,10 @@ export const Signin = () => {
                 <Card className="bg-secondary shadow border-0">
                   <CardHeader className="bg-white pb-5">
                     <div className="text-muted text-center mb-3">
-                      <small className="blue-color font-family font-size-16">Sign in with</small>
-                    </div>
-                    <div className="btn-wrapper text-center">
-                      <Button
-                        className="btn-neutral btn-icon"
-                        color="default"
-                        href="#pablo"
-                        onClick={(e) => e.preventDefault()}
-                      >
-                        <span className="btn-inner--icon mr-1">
-                          <img
-                            alt="..."
-                            src={require("../../../assets/img/icons/common/github.svg")}
-                          />
-                        </span>
-                        <span className="btn-inner--text">Github</span>
-                      </Button>
-                      <Button
-                        className="btn-neutral btn-icon ml-1"
-                        color="default"
-                        href="#pablo"
-                        onClick={(e) => e.preventDefault()}
-                      >
-                        <span className="btn-inner--icon mr-1">
-                          <img
-                            alt="..."
-                            src="assets/img/icons/common/google.svg"
-                          />
-                        </span>
-                        <span className="btn-inner--text">Google</span>
-                      </Button>
+                      <small className="font-size-16">ACCEDI</small>
                     </div>
                   </CardHeader>
                   <CardBody className="px-lg-5 py-lg-5">
-                    <div className="text-center text-muted mb-4">
-                      <small className="font-size-16 font-family blue-color">Or sign in with credentials</small>
-                    </div>
                     <Form role="form">
                       <FormGroup className="mb-3">
                         <InputGroup className="input-group-alternative">
@@ -194,7 +155,7 @@ export const Signin = () => {
                           className="custom-control-label"
                           htmlFor=" customCheckLogin"
                         >
-                          <span>Remember me</span>
+                          <span>Ricordami</span>
                         </label>
                       </div>
                       <div className="text-center">
@@ -229,7 +190,7 @@ export const Signin = () => {
                       href="#pablo"
                       onClick={(e) => e.preventDefault(e)}
                     >
-                      <small className="blue-color">Forgot password?</small>
+                      <small>Forgot password?</small>
                     </a>
                   </Col>
                   <Col className="text-right" xs="6">
@@ -238,7 +199,7 @@ export const Signin = () => {
                       href="#pablo"
                       onClick={(e) => navigate("/signup")}
                     >
-                      <small className="blue-color">Create new account</small>
+                      <small>Create new account</small>
                     </a>
                   </Col>
                 </Row>

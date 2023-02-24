@@ -18,7 +18,7 @@
 import React, { useEffect, useState } from "react";
 
 // reactstrap components
-import { Button, Card, Container, Row, Col, Modal } from "reactstrap";
+import { Button, Card, Container, Row, Col, Modal, CardHeader, CardBody, FormGroup, InputGroupAddon, InputGroupText, InputGroup, Input, Form } from "reactstrap";
 import { BASE_URL } from '../../../config.ts'
 
 // core components
@@ -41,6 +41,8 @@ export const Profile = () => {
   const username = useParams().username;
 
   const [feedbackModalStatus, setFeedbackModalStatus] = useState(false)
+
+  const [accountModalStatus, setAccountModalStatus] = useState(false)
 
   const [index, setIndex] = useState('feedbacks')
 
@@ -82,6 +84,8 @@ export const Profile = () => {
       'thought': feedbackBody.thought
     })
     .then(response => {
+      getFeedbacks(user.user_id)
+      getUserInformation()
       console.log(response.data)
     })
     .catch(error => console.log(error))
@@ -114,6 +118,14 @@ export const Profile = () => {
     .catch(error => console.log(error))
   }
 
+  const changeUserData = async () => {
+    await axios.put(BASE_URL + '/user/change', user)
+    .then(response => {
+      
+    })
+    .catch(error => console.log(error))
+  }
+
   useEffect(() => {
     getUserInformation()
   },[])
@@ -129,10 +141,17 @@ export const Profile = () => {
         
       })
       .catch(error => {
+        window.localStorage.removeItem("token")
         navigate("/signin")
       })
     }
   },[])
+
+  const handleAccountData = (e) => {
+    const newAccountData = {...user};
+    newAccountData[e.target.name] = e.target.value;
+    setUser(newAccountData)
+  }
 
   return (
     <>
@@ -141,11 +160,106 @@ export const Profile = () => {
         <Loading visible={true}/>
       ):(
         <>
-          <>
           <Modal
             className="modal-dialog-centered"
-            isOpen={feedbackModalStatus}
-            toggle={() => feedbackModalStatus}
+            size="sm"
+            isOpen={accountModalStatus}
+            toggle={() => accountModalStatus}
+          >
+            <div className="modal-body p-0">
+              <Card className="bg-secondary shadow border-0">
+                <CardHeader className="space-around display-flex bg-white pb-5">
+                  <span className="font-size-18 font-family">Modifica i tuoi dati</span>
+                </CardHeader>
+                <CardBody className="px-lg-5 py-lg-5">
+                  <Form role="form">
+                    <FormGroup>
+                      <InputGroup className="input-group-alternative mb-3">
+                        <InputGroupAddon addonType="prepend">
+                          <InputGroupText>
+                            <i className="ni ni-hat-3" />
+                          </InputGroupText>
+                        </InputGroupAddon>
+                        <Input name="name" value={user.name} onChange={(e) => handleAccountData(e)} placeholder="Name" type="text" />
+                      </InputGroup>
+                    </FormGroup>
+                    <FormGroup>
+                      <InputGroup className="input-group-alternative mb-3">
+                        <InputGroupAddon addonType="prepend">
+                          <InputGroupText>
+                            <i className="ni ni-hat-3" />
+                          </InputGroupText>
+                        </InputGroupAddon>
+                        <Input name="age" value={user.age} onChange={(e) => handleAccountData(e)} placeholder="Anni" type="number" />
+                      </InputGroup>
+                    </FormGroup>
+                    <FormGroup>
+                      <InputGroup className="input-group-alternative mb-3">
+                        <InputGroupAddon addonType="prepend">
+                          <InputGroupText>
+                            <i className="ni ni-hat-3" />
+                          </InputGroupText>
+                        </InputGroupAddon>
+                        <Input name="bio" value={user.bio} onChange={(e) => handleAccountData(e)} placeholder="Dicci di più su di te" type="text" />
+                      </InputGroup>
+                    </FormGroup>
+                    <FormGroup>
+                      <InputGroup className="input-group-alternative mb-3">
+                        <InputGroupAddon addonType="prepend">
+                          <InputGroupText>
+                            <i className="ni ni-hat-3" />
+                          </InputGroupText>
+                        </InputGroupAddon>
+                        <Input name="place" value={user.place} onChange={(e) => handleAccountData(e)} placeholder="Dove abiti?" type="text" />
+                      </InputGroup>
+                    </FormGroup>
+                    <FormGroup>
+                      <InputGroup className="input-group-alternative mb-3">
+                        <InputGroupAddon addonType="prepend">
+                          <InputGroupText>
+                            <i className="ni ni-email-83" />
+                          </InputGroupText>
+                        </InputGroupAddon>
+                        <Input name="email" value={user.email} onChange={(e) => handleAccountData(e)} placeholder="Email" type="email" />
+                      </InputGroup>
+                    </FormGroup>
+                    <FormGroup>
+                      <InputGroup className="input-group-alternative">
+                        <InputGroupAddon addonType="prepend">
+                          <InputGroupText>
+                            <i className="ni ni-lock-circle-open" />
+                          </InputGroupText>
+                        </InputGroupAddon>
+                        <Input
+                          name="password" value={user.password} onChange={(e) => handleAccountData(e)}
+                          placeholder="Password"
+                          type="password"
+                          autoComplete="off"
+                        />
+                      </InputGroup>
+                    </FormGroup>
+                    <div className="custom-control custom-control-alternative custom-checkbox">
+                      <input
+                        className="custom-control-input"
+                        id=" customCheckLogin"
+                        type="checkbox"
+                      />
+                    </div>
+                    <div className="text-center">
+                      <Button onClick={(e) => {changeUserData(); setAccountModalStatus(false)}} className="border-smaller white-color blue-backgroundcolor my-4" color="primary" type="button">
+                        CAMBIA
+                      </Button>
+                    </div>
+                  </Form>
+                </CardBody>
+              </Card>
+            </div>
+          </Modal>
+          <>
+          <Modal
+              className="modal-dialog-centered"
+              isOpen={feedbackModalStatus}
+              toggle={() => feedbackModalStatus}
           >
             <div className="modal-header">
               <h6 className="modal-title" id="modal-title-default">
@@ -184,7 +298,7 @@ export const Profile = () => {
               </div>
             </div>
             <div className="modal-footer">
-              <Button className="white-color blue-backgroundcolor" onClick={(e) => addFeedback()} color="" type="button">
+              <Button className="white-color blue-backgroundcolor" onClick={(e) => {addFeedback(); setFeedbackModalStatus(false)}} color="" type="button">
                 Aggiungi
               </Button>
               <Button
@@ -255,7 +369,7 @@ export const Profile = () => {
                               <Button
                                 className="font-family white-color blue-backgroundcolor float-right"
                                 color=""
-                                onClick={(e) => e.preventDefault()}
+                                onClick={(e) => setAccountModalStatus(true)}
                                 size="md"
                               >
                                 Modifica

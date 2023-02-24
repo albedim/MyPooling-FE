@@ -5,7 +5,7 @@
   background-color: white !important;
 }
 .blue-backgroundcolor {
-  background-color: #589df8 !important;
+  background-color: #71adfc !important;
 }
 .white-color {
   color: rgb(255, 255, 255) !important;
@@ -58,7 +58,7 @@
 }
 
 .blue-color{
-  color: #589df8;
+  color: #71adfc;
 }
 
 .border-color-gray{
@@ -88,7 +88,7 @@
 }
 
 .blue-border{
-  border-color: #589df8 !important;
+  border-color: #6cabfd !important;
 }
 
 .button:hover{

@@ -82,6 +82,7 @@ export const SearchSchool = () => {
         
       })
       .catch(error => {
+        window.localStorage.removeItem("token")
         navigate("/signin")
       })
     }
@@ -159,14 +160,12 @@ export const SearchSchool = () => {
                     <div className="blue-color display-flex space-around align-center height-90 width-100">
                       {
                         place != "" ? (
-                          <span
-                            onClick={(e) => {
-                              getPlaces();
-                              setHasSelected(false);
-                            }} 
-                            className="hover font-weight-700 font-size-24"><IonIcon name="search-outline"/></span>
+                          <button onClick={(e) => {
+                            getPlaces()
+                            setHasSelected(false)
+                          }} className="outline-none hover height-34 font-size-14 align-center display-flex space-around border-radius-5 border-none font-family white-color width-64 blue-backgroundcolor">CERCA</button>
                         ):(
-                          <span className="opacity-40 font-weight-700 font-size-24"><IonIcon name="search-outline"/></span>
+                          <button className="outline-none opacity-40 height-34 font-size-14 align-center display-flex space-around border-radius-5 border-none font-family white-color width-64 blue-backgroundcolor">CERCA</button>
                         )
                       }
                     </div>

@@ -56,7 +56,7 @@ export function App(){
           element={<Profile/>}
         />
         <Route
-          path="/page-not-found"
+          path="/*"
           exact
           element={<NotFound page={true}/>}
         />

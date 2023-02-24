@@ -19,10 +19,8 @@ export default function BasicMenu({userName}) {
 
   const logout = () => {
     window.localStorage.removeItem('token');
-    navigate("/")
+    window.location.href = '/MyPooling-FE'
   }
-
-  const navigate = useNavigate()
 
   return (
     <div className='align-center space-around display-flex blue-border border-radius-5 border-smaller'>
