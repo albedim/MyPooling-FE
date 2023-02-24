@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/MyPooling-FE/static/css/main.0e10ab1b.css",
-    "main.js": "/MyPooling-FE/static/js/main.533cb530.js",
+    "main.css": "/MyPooling-FE/static/css/main.ec80feff.css",
+    "main.js": "/MyPooling-FE/static/js/main.d170f5af.js",
     "static/media/fontawesome-webfont.svg?v=4.7.0": "/MyPooling-FE/static/media/fontawesome-webfont.c1e38fd9e0e74ba58f7a.svg",
     "static/media/fontawesome-webfont.eot": "/MyPooling-FE/static/media/fontawesome-webfont.8b43027f47b20503057d.eot",
     "static/media/fontawesome-webfont.ttf?v=4.7.0": "/MyPooling-FE/static/media/fontawesome-webfont.1e59d2330b4c6deb84b3.ttf",
@@ -15,13 +15,12 @@
     "static/media/icon.png": "/MyPooling-FE/static/media/icon.a54e35fa48d2b8cbcb85.png",
     "static/media/nucleo-icons.woff": "/MyPooling-FE/static/media/nucleo-icons.c82c9b7c40130b7116d3.woff",
     "static/media/nucleo-icons.woff2": "/MyPooling-FE/static/media/nucleo-icons.cba267483aa6a7cb6e33.woff2",
-    "static/media/github.svg": "/MyPooling-FE/static/media/github.6c95555646a0ecabf549179c97bf0e7d.svg",
     "index.html": "/MyPooling-FE/index.html",
-    "main.0e10ab1b.css.map": "/MyPooling-FE/static/css/main.0e10ab1b.css.map",
-    "main.533cb530.js.map": "/MyPooling-FE/static/js/main.533cb530.js.map"
+    "main.ec80feff.css.map": "/MyPooling-FE/static/css/main.ec80feff.css.map",
+    "main.d170f5af.js.map": "/MyPooling-FE/static/js/main.d170f5af.js.map"
   },
   "entrypoints": [
-    "static/css/main.0e10ab1b.css",
-    "static/js/main.533cb530.js"
+    "static/css/main.ec80feff.css",
+    "static/js/main.d170f5af.js"
   ]
 }
