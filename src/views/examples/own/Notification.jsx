@@ -70,37 +70,56 @@ export default function Notification() {
           <Notifications style={{width: 18}} color={"white"}></Notifications>
         </Badge>
       </Button>
-      <Menu
-        id="basic-menu"
-        style={{width: 464, border: 'none', boxShadow: '-2px -2px 12px -5px rgba(110,110,110,0.14)', borderRadius: 5, backgroundColor: 'white'}}
-        anchorEl={anchorEl}
-        open={open}
-        onClose={handleClose}
-        aria-labelledby="basic-demo-button"
-      >
-        {
-          notifications.map(notification => (
+      {
+        notifications.length == 0 ? (
+          <Menu
+            id="basic-menu"
+            style={{width: 234, border: 'none', boxShadow: '-2px -2px 12px -5px rgba(110,110,110,0.14)', borderRadius: 5, backgroundColor: 'white'}}
+            anchorEl={anchorEl}
+            open={open}
+            onClose={handleClose}
+            aria-labelledby="basic-demo-button"
+          >
             <MenuItem 
-              style={{ height: 108, alignItems: 'center', display: 'flex', fontSize: 15.4, fontWeight: 400, fontFamily: 'League Spartan'}} 
+              style={{justifyContent: 'space-around', height: 108, alignItems: 'center', display: 'flex'}} 
             >
-              <div className='align-center space-around display-flex'>
-                <div className='space-around align-center display-flex margin-left-14'>
-                  <Notifications style={{width: 18}} color={"#6cabfd"}></Notifications>
-                </div>
-                <div className='space-around align-center display-flex margin-left-14'>
-                  <span className="font-family">@{notification.body}</span>
-                </div>
-                {
-                  !notification.seen &&
-                    <div className='space-around align-center display-flex margin-left-14'>
-                      <button onClick={(e) => markAsSeen(notification.notification_id)} className='ok-backgroundcolor border-radius-5 blue-color blue-border border-smaller'><Eye color={"#6cabfd"} style={{width: 14}}></Eye></button>
-                    </div>
-                }
-              </div>
+              <span className='font-size-16 font-family'>Non ci sono notifiche</span>
             </MenuItem>
-          ))
-        }
-      </Menu>
+          </Menu>
+        ):(
+          <Menu
+            id="basic-menu"
+            style={{width: 464, border: 'none', boxShadow: '-2px -2px 12px -5px rgba(110,110,110,0.14)', borderRadius: 5, backgroundColor: 'white'}}
+            anchorEl={anchorEl}
+            open={open}
+            onClose={handleClose}
+            aria-labelledby="basic-demo-button"
+          >
+            {
+              notifications.map(notification => (
+                <MenuItem 
+                  style={{ height: 108, alignItems: 'center', display: 'flex', fontSize: 15.4, fontWeight: 400, fontFamily: 'League Spartan'}} 
+                >
+                  <div className='align-center space-around display-flex'>
+                    <div className='space-around align-center display-flex margin-left-14'>
+                      <Notifications style={{width: 18}} color={"#6cabfd"}></Notifications>
+                    </div>
+                    <div className='space-around align-center display-flex margin-left-14'>
+                      <span className="font-family">@{notification.body}</span>
+                    </div>
+                    {
+                      !notification.seen &&
+                        <div className='space-around align-center display-flex margin-left-14'>
+                          <button onClick={(e) => markAsSeen(notification.notification_id)} className='ok-backgroundcolor border-radius-5 blue-color blue-border border-smaller'><Eye color={"#6cabfd"} style={{width: 14}}></Eye></button>
+                        </div>
+                    }
+                  </div>
+                </MenuItem>
+              ))
+            }
+          </Menu>
+        )
+      }
     </div>
   );
 }

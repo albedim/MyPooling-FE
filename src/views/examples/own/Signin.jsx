@@ -155,7 +155,7 @@ export const Signin = () => {
                           className="custom-control-label"
                           htmlFor=" customCheckLogin"
                         >
-                          <span>Ricordami</span>
+                          <span style={{color: '#787878'}} className="font-size-14 font-family">Ricordami</span>
                         </label>
                       </div>
                       <div className="text-center">
@@ -190,7 +190,7 @@ export const Signin = () => {
                       href="#pablo"
                       onClick={(e) => e.preventDefault(e)}
                     >
-                      <small>Forgot password?</small>
+                      <small style={{fontSize: 16, fontFamily: 'League Spartan', color: '#787878'}}>Forgot password?</small>
                     </a>
                   </Col>
                   <Col className="text-right" xs="6">
@@ -199,7 +199,7 @@ export const Signin = () => {
                       href="#pablo"
                       onClick={(e) => navigate("/signup")}
                     >
-                      <small>Create new account</small>
+                      <small style={{fontSize: 16, fontFamily: 'League Spartan', color: "#787878"}}>Create new account</small>
                     </a>
                   </Col>
                 </Row>

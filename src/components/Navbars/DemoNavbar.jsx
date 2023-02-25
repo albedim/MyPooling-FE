@@ -137,7 +137,7 @@ export const DemoNavbar = () => {
                         </UncontrolledTooltip>
                       </NavItem>
                       <NavItem className="d-none d-lg-block ml-lg-4">
-                        <BasicMenu userName={jwt(window.localStorage.getItem('token')).sub.username}/>
+                        <BasicMenu username={jwt(window.localStorage.getItem('token')).sub.username}/>
                         <IonIcon name="search" />
                       </NavItem>
                     </>

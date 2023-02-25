@@ -166,11 +166,20 @@ export const Profile = () => {
             isOpen={accountModalStatus}
             toggle={() => accountModalStatus}
           >
+            <div className="modal-header">
+              <span className="font-size-18 font-family">Modifica i tuoi dati</span>
+              <button
+                aria-label="Close"
+                className="close"
+                data-dismiss="modal"
+                type="button"
+                onClick={() => setAccountModalStatus(false)}
+              >
+                <span aria-hidden={true}>×</span>
+              </button>
+            </div>
             <div className="modal-body p-0">
               <Card className="bg-secondary shadow border-0">
-                <CardHeader className="space-around display-flex bg-white pb-5">
-                  <span className="font-size-18 font-family">Modifica i tuoi dati</span>
-                </CardHeader>
                 <CardBody className="px-lg-5 py-lg-5">
                   <Form role="form">
                     <FormGroup>
@@ -276,25 +285,20 @@ export const Profile = () => {
               </button>
             </div>
             <div className="modal-body">
-              <div className="height-40 align-center space-around display-flex">
-                <Rating name="size-large" size="large" onChange={(e) => feedbackBody.stars = e.target._wrapperState.initialValue} defaultValue={0} />
+              <div className="height-14 space-around align-center space-around display-flex">
+                <div className="width-254 align-center display-flex">
+                  <div><span className="gray-color font-size-14 font-family">Valutazione</span></div>
+                  <div className="margin-left-14 "><Rating name="size-large" size="large" onChange={(e) => feedbackBody.stars = e.target._wrapperState.initialValue} defaultValue={0} /></div>
+                </div>
+              </div>
+              <div className="height-54 space-around align-center display-flex">
+                <div className="width-254 align-center display-flex">
+                  <div><span className="gray-color font-size-14 font-family">Anonimo</span></div>
+                  <div className="margin-left-14"><SwitchUnstyled className="height-24 width-24" checked={feedbackAnonymous} onChange={(e) => setFeedbackAnonymous(!feedbackAnonymous)}></SwitchUnstyled></div>
+                </div>
               </div>
               <div className="space-around display-flex">
-                <TextareaAutosize
-                  name="thought"
-                  className="gray-border border-smaller border-radius-5 font-size-16 font-family"
-                  onChange={(e) => feedbackBody.thought = e.target.value}
-                  maxRows={3}
-                  minRows={3}
-                  placeholder="Scrivi una recensione (Opzionale)"
-                  style={{ width: 264 }}
-                />
-              </div>
-              <div className="height-54 align-center space-around display-flex">
-                <div className="width-264">
-                  <div><span className="font-size-14 font-family">Anonimo</span></div>
-                  <div><SwitchUnstyled className="height-24 width-24" checked={feedbackAnonymous} onChange={(e) => setFeedbackAnonymous(!feedbackAnonymous)}></SwitchUnstyled></div>
-                </div>
+                <input placeholder="Scrivi una recensione (Opzionale)" className="border-radius-5 height-28 font-size-14 outline-none border-smaller gray-border width-254" type="text" />
               </div>
             </div>
             <div className="modal-footer">
@@ -491,7 +495,7 @@ export const Profile = () => {
                                     <NotFound page={false}/>
                                   ):(
                                     ownTrips.map(ownTrip => (
-                                      <OwnTrip code={ownTrip.code} departure_date={ownTrip.departure_date} slots={ownTrip.slots} mode={ownTrip.mode} steps={ownTrip.steps}/>
+                                      <OwnTrip tripId={ownTrip.trip_id} code={ownTrip.code} departure_date={ownTrip.departure_date} slots={ownTrip.slots} mode={ownTrip.mode} steps={ownTrip.steps}/>
                                     ))
                                   )
                                 }

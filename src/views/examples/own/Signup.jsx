@@ -39,6 +39,8 @@ import axios from "axios";
 import SimpleFooter from "../../../components/Footers/SimpleFooter";
 import { Alert, Snackbar } from "@mui/material";
 import { SpinnerCircular } from "spinners-react";
+import { Calendar, Pencil, Person } from "react-ionicons";
+import { ChildFriendly, ChildFriendlyOutlined, CurrencyYenOutlined, EmojiPeople, LocalShipping, LocationCity, MobileFriendly, Unarchive, VerifiedUser, ViewAgenda, WrongLocationRounded } from "@mui/icons-material";
 
 export const Signup = () => {
 
@@ -108,7 +110,7 @@ export const Signup = () => {
                 <Card className="bg-secondary shadow border-0">
                   <CardHeader className="bg-white pb-5">
                     <div className="text-muted text-center mb-3">
-                      <small>ACCESSO</small>
+                      <small>REGISTRATI</small>
                     </div>
                   </CardHeader>
                   <CardBody className="px-lg-5 py-lg-5">
@@ -117,17 +119,17 @@ export const Signup = () => {
                         <InputGroup className="input-group-alternative mb-3">
                           <InputGroupAddon addonType="prepend">
                             <InputGroupText>
-                              <i className="ni ni-hat-3" />
+                              <Person color={'#ababab'} style={{width: 14}}/>
                             </InputGroupText>
                           </InputGroupAddon>
-                          <Input name="name" value={signupData.name} onChange={(e) => handleSignupnData(e)} placeholder="Name" type="text" />
+                          <Input name="name" value={signupData.name} onChange={(e) => handleSignupnData(e)} placeholder="Nome Completo" type="text" />
                         </InputGroup>
                       </FormGroup>
                       <FormGroup>
                         <InputGroup className="input-group-alternative mb-3">
                           <InputGroupAddon addonType="prepend">
                             <InputGroupText>
-                              <i className="ni ni-hat-3" />
+                              <EmojiPeople color={'#ababab'} style={{width: 14}}/>
                             </InputGroupText>
                           </InputGroupAddon>
                           <Input name="username" value={signupData.username} onChange={(e) => handleSignupnData(e)} placeholder="Username" type="text" />
@@ -137,7 +139,7 @@ export const Signup = () => {
                         <InputGroup className="input-group-alternative mb-3">
                           <InputGroupAddon addonType="prepend">
                             <InputGroupText>
-                              <i className="ni ni-hat-3" />
+                              <Calendar color={'#ababab'} style={{width: 14}}/>
                             </InputGroupText>
                           </InputGroupAddon>
                           <Input name="age" value={signupData.age} onChange={(e) => handleSignupnData(e)} placeholder="Anni" type="number" />
@@ -147,7 +149,7 @@ export const Signup = () => {
                         <InputGroup className="input-group-alternative mb-3">
                           <InputGroupAddon addonType="prepend">
                             <InputGroupText>
-                              <i className="ni ni-hat-3" />
+                              <Pencil color={'#ababab'} style={{width: 14}}/>
                             </InputGroupText>
                           </InputGroupAddon>
                           <Input name="bio" value={signupData.bio} onChange={(e) => handleSignupnData(e)} placeholder="Dicci di più su di te" type="text" />
@@ -157,7 +159,7 @@ export const Signup = () => {
                         <InputGroup className="input-group-alternative mb-3">
                           <InputGroupAddon addonType="prepend">
                             <InputGroupText>
-                              <i className="ni ni-hat-3" />
+                              <LocationCity color={'#ababab'} style={{width: 14}} />
                             </InputGroupText>
                           </InputGroupAddon>
                           <Input name="place" value={signupData.place} onChange={(e) => handleSignupnData(e)} placeholder="Dove abiti?" type="text" />
