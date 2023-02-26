@@ -255,7 +255,7 @@ export const Profile = () => {
                       />
                     </div>
                     <div className="text-center">
-                      <Button onClick={(e) => {changeUserData(); setAccountModalStatus(false)}} className="border-smaller white-color blue-backgroundcolor my-4" color="primary" type="button">
+                      <Button onClick={(e) => {changeUserData(); setAccountModalStatus(false)}} className="border-none white-color blue-backgroundcolor my-4" color="" type="button">
                         CAMBIA
                       </Button>
                     </div>
@@ -380,10 +380,10 @@ export const Profile = () => {
                               </Button>
                             ):(
                               <Button
-                              className="white-color blue-backgroundcolor mr-4"
-                              color=""
-                              onClick={(e) => setFeedbackModalStatus(true)}
-                              size="md"
+                                className="border-none white-color blue-backgroundcolor mr-4"
+                                color=""
+                                onClick={(e) => setFeedbackModalStatus(true)}
+                                size="md"
                               >
                                 Valuta
                               </Button>
@@ -495,7 +495,7 @@ export const Profile = () => {
                                     <NotFound page={false}/>
                                   ):(
                                     ownTrips.map(ownTrip => (
-                                      <OwnTrip tripId={ownTrip.trip_id} code={ownTrip.code} departure_date={ownTrip.departure_date} slots={ownTrip.slots} mode={ownTrip.mode} steps={ownTrip.steps}/>
+                                      <OwnTrip ownerId={ownTrip.owner_id} tripId={ownTrip.trip_id} code={ownTrip.code} departure_date={ownTrip.departure_date} slots={ownTrip.slots} mode={ownTrip.mode} steps={ownTrip.steps}/>
                                     ))
                                   )
                                 }

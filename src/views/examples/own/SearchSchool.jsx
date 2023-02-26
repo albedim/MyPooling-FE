@@ -63,7 +63,7 @@ export const SearchSchool = () => {
     setHasSelected(true);
     setIsLoading(true);
     console.log(place.lat, place.lon)
-    await axios.get(BASE_URL + `/trip/get/near?x=${parseFloat(place.lat)}&y=${parseFloat(place.lon)}&strength=${request.strength}&departure_date=${request.departure_date.replaceAll("-",",")}&mode=school`)
+    await axios.get(BASE_URL + `/trip/get/near?x=${parseFloat(place.lat)}&y=${parseFloat(place.lon)}&strength=${request.strength}&departure_date=${request.departure_date.replaceAll("-",",")}&mode=building`)
     .then(response => {
       setTrips(response.data);
     })

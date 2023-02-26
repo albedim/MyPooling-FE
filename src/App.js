@@ -15,6 +15,7 @@ import { Hero } from "./views/IndexSections/Hero";
 import { Signup } from "./views/examples/own/Signup";
 import { Profile } from "./views/examples/own/Profile";
 import { NotFound } from "./views/examples/own/NotFound";
+import { AddTrip } from "./views/examples/own/AddTrip";
 
 export function App(){
   return(
@@ -54,6 +55,11 @@ export function App(){
           path="/profile/:username"
           exact
           element={<Profile/>}
+        />
+        <Route
+          path="/add_trip"
+          exact
+          element={<AddTrip/>}
         />
         <Route
           path="/*"

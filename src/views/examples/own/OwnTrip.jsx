@@ -1,4 +1,5 @@
 import { Step, StepLabel, Stepper } from "@mui/material";
+import jwt from 'jwt-decode'
 import QontoConnector from './QontoConnector'
 import axios from "axios";
 import { useEffect, useState } from "react";
@@ -10,7 +11,7 @@ import Avatar from "boring-avatars";
 import { BASE_URL } from "../../../config.ts";
 import { NotFound } from "./NotFound";
 
-export const OwnTrip = ({tripId, code, departure_date, mode, slots, steps}) => {
+export const OwnTrip = ({ownerId, tripId, code, departure_date, mode, slots, steps}) => {
 
   const [departureDate, setDepartureDate] = useState("")
 
@@ -134,15 +135,23 @@ export const OwnTrip = ({tripId, code, departure_date, mode, slots, steps}) => {
               )
             }
             {
-              steps.map(step => (
-                <Step
-                  onClick={(e) => { 
-                    getRides(tripId, step.step_id); 
-                    setRidesModalStatus(true)
-                  }} style={{cursor: 'pointer', color: 'red'}} key={step.step_id}>
-                  <StepLabel><span className="font-weight-500 font-family">{step.name}</span></StepLabel>
-                </Step>
-              ))
+              ownerId == jwt(window.localStorage.getItem('token')).sub.user_id ? (
+                steps.map(step => (
+                  <Step
+                    onClick={(e) => { 
+                      getRides(tripId, step.step_id); 
+                      setRidesModalStatus(true)
+                    }} style={{cursor: 'pointer', color: 'red'}} key={step.step_id}>
+                    <StepLabel><span className="font-weight-500 font-family">{step.name}</span></StepLabel>
+                  </Step>
+                ))
+              ):(
+                steps.map(step => (
+                  <Step style={{cursor: 'pointer', color: 'red'}} key={step.step_id}>
+                    <StepLabel><span className="font-weight-500 font-family">{step.name}</span></StepLabel>
+                  </Step>
+                ))
+              )
             }
           </Stepper>
           </div>

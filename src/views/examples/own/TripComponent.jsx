@@ -1,6 +1,8 @@
 import axios from "axios";
+import jwt from "jwt-decode";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { BASE_URL } from "../../../config.ts";
 
 export const TripComponent = ({owner_username, trip_id, step_id, username, creation_date, used_slots, slots, code}) => {
 
@@ -38,8 +40,8 @@ export const TripComponent = ({owner_username, trip_id, step_id, username, creat
   },[])
 
   const addRide = async () => {
-    await axios.post("http://albedim.pythonanywhere.com/api/v_1_4_0/ride/add", {
-      'user_id': 1,
+    await axios.post(BASE_URL + "/ride/add", {
+      'user_id': jwt(window.localStorage.getItem('token')).sub.user_id,
       'step_id': step_id,
       'trip_id': trip_id
     })
@@ -89,7 +91,7 @@ export const TripComponent = ({owner_username, trip_id, step_id, username, creat
           <div className="align-center display-flex height-24 width-140"><h4 className="font-size-14 font-weight-400 margin-left-40 gray-color font-family">{date}</h4></div>
         </div>
         <div className="display-flex width-160">
-          <button onClick={(e) => addRide()} className="transition button hover font-family blue-color border-smaller outline-none blue-border border-radius-5 white-backgroundcolor margin-left-14 margin-top-14 height-38 width-114">PARTECIPA</button>
+          <button onClick={(e) => addRide()} className="hover font-family blue-color border-smaller outline-none blue-border border-radius-5 white-backgroundcolor margin-left-14 margin-top-14 height-38 width-114">PARTECIPA</button>
         </div>
       </div>
     </div>

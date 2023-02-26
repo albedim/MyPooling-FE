@@ -87,6 +87,7 @@ export const HomePage = () => {
                         <span  className="font-family btn-inner--text">Cerca un passaggio</span>
                       </Button>
                       <Button
+                        onClick={(e) => navigate("/add_trip")}
                         color=""
                         className="blue-border border-smaller-i ok-backgroundcolor mb-3 mb-sm-0 ml-1"
                       >
