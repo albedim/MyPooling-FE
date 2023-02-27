@@ -187,8 +187,7 @@ export const Signin = () => {
                   <Col xs="6">
                     <a
                       className="text-light"
-                      href="#pablo"
-                      onClick={(e) => e.preventDefault(e)}
+                      onClick={(e) => navigate("/forget_password")}
                     >
                       <small style={{fontSize: 16, fontFamily: 'League Spartan', color: '#787878'}}>Forgot password?</small>
                     </a>
@@ -196,7 +195,6 @@ export const Signin = () => {
                   <Col className="text-right" xs="6">
                     <a
                       className="text-light"
-                      href="#pablo"
                       onClick={(e) => navigate("/signup")}
                     >
                       <small style={{fontSize: 16, fontFamily: 'League Spartan', color: "#787878"}}>Create new account</small>

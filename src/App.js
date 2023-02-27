@@ -16,6 +16,8 @@ import { Signup } from "./views/examples/own/Signup";
 import { Profile } from "./views/examples/own/Profile";
 import { NotFound } from "./views/examples/own/NotFound";
 import { AddTrip } from "./views/examples/own/AddTrip";
+import { ForgetPassword } from "./views/examples/own/ForgetPassword";
+import { RecoveryPassword } from "./views/examples/own/RecoveryPassword";
 
 export function App(){
   return(
@@ -60,6 +62,16 @@ export function App(){
           path="/add_trip"
           exact
           element={<AddTrip/>}
+        />
+        <Route
+          path="/forget_password"
+          exact
+          element={<ForgetPassword/>}
+        />
+        <Route
+          path="/recovery_password"
+          exact
+          element={<RecoveryPassword/>}
         />
         <Route
           path="/*"
