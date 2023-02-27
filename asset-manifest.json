@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/MyPooling-FE/static/css/main.ec80feff.css",
-    "main.js": "/MyPooling-FE/static/js/main.bcb3f888.js",
+    "main.js": "/MyPooling-FE/static/js/main.2428aa96.js",
     "static/media/fontawesome-webfont.svg?v=4.7.0": "/MyPooling-FE/static/media/fontawesome-webfont.c1e38fd9e0e74ba58f7a.svg",
     "static/media/fontawesome-webfont.eot": "/MyPooling-FE/static/media/fontawesome-webfont.8b43027f47b20503057d.eot",
     "static/media/fontawesome-webfont.ttf?v=4.7.0": "/MyPooling-FE/static/media/fontawesome-webfont.1e59d2330b4c6deb84b3.ttf",
@@ -17,10 +17,10 @@
     "static/media/nucleo-icons.woff2": "/MyPooling-FE/static/media/nucleo-icons.cba267483aa6a7cb6e33.woff2",
     "index.html": "/MyPooling-FE/index.html",
     "main.ec80feff.css.map": "/MyPooling-FE/static/css/main.ec80feff.css.map",
-    "main.bcb3f888.js.map": "/MyPooling-FE/static/js/main.bcb3f888.js.map"
+    "main.2428aa96.js.map": "/MyPooling-FE/static/js/main.2428aa96.js.map"
   },
   "entrypoints": [
     "static/css/main.ec80feff.css",
-    "static/js/main.bcb3f888.js"
+    "static/js/main.2428aa96.js"
   ]
 }
