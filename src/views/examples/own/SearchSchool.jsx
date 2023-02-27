@@ -25,6 +25,7 @@ export const SearchSchool = () => {
 
   const [isLoading, setIsLoading] = useState(false);
 
+
   const getTomorrow = () => {
     let date = new Date();
     date.setDate(date.getDate() + 1);
@@ -51,11 +52,11 @@ export const SearchSchool = () => {
       'format': "json",
       'addressdetails': "addressdetails",
     }).toString())
-    .then(response => {
-      console.log(response.data)
-      setPlaces(response.data);
-    })
-    .catch(error => console.log(error));
+      .then(response => {
+        console.log(response.data)
+        setPlaces(response.data);
+      })
+      .catch(error => console.log(error));
     setIsLoading(false);
   }
 
@@ -63,34 +64,34 @@ export const SearchSchool = () => {
     setHasSelected(true);
     setIsLoading(true);
     console.log(place.lat, place.lon)
-    await axios.get(BASE_URL + `/trip/get/near?x=${parseFloat(place.lat)}&y=${parseFloat(place.lon)}&strength=${request.strength}&departure_date=${request.departure_date.replaceAll("-",",")}&mode=building`)
-    .then(response => {
-      setTrips(response.data);
-    })
-    .catch(error => console.log(error));
+    await axios.get(BASE_URL + `/trip/get/near?x=${parseFloat(place.lat)}&y=${parseFloat(place.lon)}&strength=${request.strength}&departure_date=${request.departure_date.replaceAll("-", ",")}&mode=building`)
+      .then(response => {
+        setTrips(response.data);
+      })
+      .catch(error => console.log(error));
     setIsLoading(false);
   }
 
   // Token validation
-  
-  useEffect(() => {
-    if(window.localStorage.getItem('token') == null){
-      navigate("/signin")
-    }else{
-      axios.get(BASE_URL + '/user/session_check?jwt='+window.localStorage.getItem('token'))
-      .then(response => {
-        
-      })
-      .catch(error => {
-        window.localStorage.removeItem("token")
-        navigate("/signin")
-      })
-    }
-  },[])
 
-  return(
+  useEffect(() => {
+    if (window.localStorage.getItem('token') == null) {
+      navigate("/signin")
+    } else {
+      axios.get(BASE_URL + '/user/session_check?jwt=' + window.localStorage.getItem('token'))
+        .then(response => {
+
+        })
+        .catch(error => {
+          window.localStorage.removeItem("token")
+          navigate("/signin")
+        })
+    }
+  }, [])
+
+  return (
     <div className="width-full height-full">
-      <DemoNavbar/>
+      <DemoNavbar />
       <section className="height-540 section section-lg section-shaped pb-250">
         <div className="shape shape-style-1 shape-default">
           <span />
@@ -117,9 +118,9 @@ export const SearchSchool = () => {
                         <input value={place} onChange={(e) => setPlace(e.target.value)} placeholder="Cerca" className="placeholder margin-left-14 border-none outline-none height-24 width-168" type="text" />
                         {
                           place != "" ? (
-                            <span onClick={(e) => setPlace("")} className="hover margin-left-14 font-size-18"><IonIcon name="close"/></span>
-                          ):(
-                            <span className="opacity-40 margin-left-14 font-size-18"><IonIcon name="close"/></span>
+                            <span onClick={(e) => setPlace("")} className="hover margin-left-14 font-size-18"><IonIcon name="close" /></span>
+                          ) : (
+                            <span className="opacity-40 margin-left-14 font-size-18"><IonIcon name="close" /></span>
                           )
                         }
                       </div>
@@ -164,7 +165,7 @@ export const SearchSchool = () => {
                             getPlaces()
                             setHasSelected(false)
                           }} className="outline-none hover height-34 font-size-14 align-center display-flex space-around border-radius-5 border-none font-family white-color width-64 blue-backgroundcolor">CERCA</button>
-                        ):(
+                        ) : (
                           <button className="outline-none opacity-40 height-34 font-size-14 align-center display-flex space-around border-radius-5 border-none font-family white-color width-64 blue-backgroundcolor">CERCA</button>
                         )
                       }
@@ -192,34 +193,34 @@ export const SearchSchool = () => {
         </div>
       </section>
       <div className="height-540">
-          <div className="display-flex space-around align-center height-80">
-            <h2 className="font-weight-500 font-size-24 font-family">La tua ricerca</h2>
-          </div>
-          <div className="display-flex space-around height-380">
-            {
-              isLoading ? (
-                <SpinnerCircular size={60} color='#589df8' thickness={140} secondaryColor={'#f8f8f8'} />
-              ):(
-                !hasSelected ? (
-                  <div className="display-flex align-center overflow-x-scroll width-almost-full">
-                    {
-                      places.map((place) => (
-                        <div onClick={(e) => getTrips(place)}><Place name={place.display_name} state={place.address.state} country={place.address.country}/></div>
-                      ))
-                    }
-                  </div>
-                ):(
-                  <div className="display-flex align-center overflow-x-scroll width-almost-full">
+        <div className="display-flex space-around align-center height-80">
+          <h2 className="font-weight-500 font-size-24 font-family">La tua ricerca</h2>
+        </div>
+        <div className="display-flex space-around height-380">
+          {
+            isLoading ? (
+              <SpinnerCircular size={60} color='#589df8' thickness={140} secondaryColor={'#f8f8f8'} />
+            ) : (
+              !hasSelected ? (
+                <div className="display-flex align-center overflow-x-scroll width-almost-full">
                   {
-                      trips.map((trip) => (
-                        <TripComponent owner_usernam={trip.owner.user_id} step_id={trip.step.step_id} trip_id={trip.trip_id} username={trip.owner.username} creation_date={trip.creation_date} used_slots={trip.used_slots} slots={trip.slots} code={trip.code}/>
-                      ))
+                    places.map((place) => (
+                      <div onClick={(e) => getTrips(place)}><Place name={place.display_name} state={place.address.state} country={place.address.country} /></div>
+                    ))
                   }
                 </div>
-                )
+              ) : (
+                <div className="display-flex align-center overflow-x-scroll width-almost-full">
+                  {
+                    trips.map((trip) => (
+                      <TripComponent owner_usernam={trip.owner.user_id} step_id={trip.step.step_id} trip_id={trip.trip_id} username={trip.owner.username} departure_date={trip.departure_date} used_slots={trip.used_slots} slots={trip.slots} code={trip.code} />
+                    ))
+                  }
+                </div>
               )
-            }
-          </div>
+            )
+          }
+        </div>
       </div>
     </div>
   );

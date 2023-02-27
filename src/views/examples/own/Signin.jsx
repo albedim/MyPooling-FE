@@ -34,15 +34,14 @@ import {
   Col
 } from "reactstrap";
 
-// core components
 import { BASE_URL } from '../../../config.ts'
 import { DemoNavbar } from "../../../components/Navbars/DemoNavbar";
 import SimpleFooter from "../../../components/Footers/SimpleFooter";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { Alert, Snackbar } from "@mui/material";
-import { SpinnerCircular } from "spinners-react";
 import { Loading } from "./Loading";
+
 
 export const Signin = () => {
 
@@ -61,8 +60,9 @@ export const Signin = () => {
 
   const navigate = useNavigate()
 
+
   const handleLoginData = (e) => {
-    const newLoginData = {...loginData};
+    const newLoginData = { ...loginData };
     newLoginData[e.target.name] = e.target.value;
     setLoginData(newLoginData);
   }
@@ -71,140 +71,140 @@ export const Signin = () => {
     console.log(loginData)
     setIsLoading(true);
     await axios.post(BASE_URL + '/user/signin', loginData)
-    .then(response => {
-      setOpenAlert(true)
-      setMessageAlert("Login effettuato con successo")
-      setTypeAlert("success")
-      setTimeout(() => {
+      .then(response => {
+        setOpenAlert(true)
+        setMessageAlert("Login effettuato con successo")
+        setTypeAlert("success")
+        setTimeout(() => {
+          setIsLoading(false)
+          window.localStorage.setItem('token', response.data.param)
+          navigate("/")
+        }, 2400);
+      })
+      .catch(error => {
+        setOpenAlert(true);
+        setMessageAlert("Credenziali non valide")
+        setTypeAlert("error")
         setIsLoading(false)
-        window.localStorage.setItem('token', response.data.param)
-        navigate("/")
-      }, 2400);
-    })
-    .catch(error => {
-      setOpenAlert(true);
-      setMessageAlert("Credenziali non valide")
-      setTypeAlert("error")
-      setIsLoading(false)
-    })
+      })
   }
 
   return (
     <>
       {
         isLoading &&
-          <Loading/>
+        <Loading />
       }
       <DemoNavbar />
-        <section className="section section-shaped section-lg">
-          <div className="shape shape-style-1 shape-default">
-            <span />
-            <span />
-            <span />
-            <span />
-            <span />
-            <span />
-            <span />
-            <span />
-          </div>
-          <Container className="pt-lg-7">
-            <Row className="justify-content-center">
-              <Col lg="5">
-                <Card className="bg-secondary shadow border-0">
-                  <CardHeader className="bg-white pb-5">
-                    <div className="text-muted text-center mb-3">
-                      <small className="font-size-16">ACCEDI</small>
-                    </div>
-                  </CardHeader>
-                  <CardBody className="px-lg-5 py-lg-5">
-                    <Form role="form">
-                      <FormGroup className="mb-3">
-                        <InputGroup className="input-group-alternative">
-                          <InputGroupAddon addonType="prepend">
-                            <InputGroupText>
-                              <i className="ni ni-email-83" />
-                            </InputGroupText>
-                          </InputGroupAddon>
-                          <Input name='email' value={loginData.email} onChange={(e) => handleLoginData(e)} placeholder="Email" type="email" />
-                        </InputGroup>
-                      </FormGroup>
-                      <FormGroup>
-                        <InputGroup className="input-group-alternative">
-                          <InputGroupAddon addonType="prepend">
-                            <InputGroupText>
-                              <i className="ni ni-lock-circle-open" />
-                            </InputGroupText>
-                          </InputGroupAddon>
-                          <Input
-                            name="password"
-                            onChange={(e) => handleLoginData(e)}
-                            placeholder="Password"
-                            type="password"
-                            autoComplete="off"
-                            value={loginData.password}
-                          />
-                        </InputGroup>
-                      </FormGroup>
-                      <div className="custom-control custom-control-alternative custom-checkbox">
-                        <input
-                          className="custom-control-input"
-                          id=" customCheckLogin"
-                          type="checkbox"
+      <section className="section section-shaped section-lg">
+        <div className="shape shape-style-1 shape-default">
+          <span />
+          <span />
+          <span />
+          <span />
+          <span />
+          <span />
+          <span />
+          <span />
+        </div>
+        <Container className="pt-lg-7">
+          <Row className="justify-content-center">
+            <Col lg="5">
+              <Card className="bg-secondary shadow border-0">
+                <CardHeader className="bg-white pb-5">
+                  <div className="text-muted text-center mb-3">
+                    <small className="font-size-16">ACCEDI</small>
+                  </div>
+                </CardHeader>
+                <CardBody className="px-lg-5 py-lg-5">
+                  <Form role="form">
+                    <FormGroup className="mb-3">
+                      <InputGroup className="input-group-alternative">
+                        <InputGroupAddon addonType="prepend">
+                          <InputGroupText>
+                            <i className="ni ni-email-83" />
+                          </InputGroupText>
+                        </InputGroupAddon>
+                        <Input name='email' value={loginData.email} onChange={(e) => handleLoginData(e)} placeholder="Email" type="email" />
+                      </InputGroup>
+                    </FormGroup>
+                    <FormGroup>
+                      <InputGroup className="input-group-alternative">
+                        <InputGroupAddon addonType="prepend">
+                          <InputGroupText>
+                            <i className="ni ni-lock-circle-open" />
+                          </InputGroupText>
+                        </InputGroupAddon>
+                        <Input
+                          name="password"
+                          onChange={(e) => handleLoginData(e)}
+                          placeholder="Password"
+                          type="password"
+                          autoComplete="off"
+                          value={loginData.password}
                         />
-                        <label
-                          className="custom-control-label"
-                          htmlFor=" customCheckLogin"
-                        >
-                          <span style={{color: '#787878'}} className="font-size-14 font-family">Ricordami</span>
-                        </label>
-                      </div>
-                      <div className="text-center">
-                        {
-                          loginData.email == "" || loginData.password == "" ? (
-                            <Button
+                      </InputGroup>
+                    </FormGroup>
+                    <div className="custom-control custom-control-alternative custom-checkbox">
+                      <input
+                        className="custom-control-input"
+                        id=" customCheckLogin"
+                        type="checkbox"
+                      />
+                      <label
+                        className="custom-control-label"
+                        htmlFor=" customCheckLogin"
+                      >
+                        <span style={{ color: '#787878' }} className="font-size-14 font-family">Ricordami</span>
+                      </label>
+                    </div>
+                    <div className="text-center">
+                      {
+                        loginData.email == "" || loginData.password == "" ? (
+                          <Button
                             className="opacity-40 white-color blue-backgroundcolor my-4"
                             color=""
                             type="button"
                           >
                             ACCEDI
                           </Button>
-                          ):(
-                            <Button
+                        ) : (
+                          <Button
                             onClick={(e) => login(e)}
                             className="white-color blue-backgroundcolor my-4"
                             color=""
                             type="button"
-                            >
-                              ACCEDI
-                            </Button>
-                          )
-                        }
-                      </div>
-                    </Form>
-                  </CardBody>
-                </Card>
-                <Row className="mt-3">
-                  <Col xs="6">
-                    <a
-                      className="text-light"
-                      onClick={(e) => navigate("/forget_password")}
-                    >
-                      <small style={{fontSize: 16, fontFamily: 'League Spartan', color: '#787878'}}>Forgot password?</small>
-                    </a>
-                  </Col>
-                  <Col className="text-right" xs="6">
-                    <a
-                      className="text-light"
-                      onClick={(e) => navigate("/signup")}
-                    >
-                      <small style={{fontSize: 16, fontFamily: 'League Spartan', color: "#787878"}}>Create new account</small>
-                    </a>
-                  </Col>
-                </Row>
-              </Col>
-            </Row>
-          </Container>
-        </section>
+                          >
+                            ACCEDI
+                          </Button>
+                        )
+                      }
+                    </div>
+                  </Form>
+                </CardBody>
+              </Card>
+              <Row className="mt-3">
+                <Col xs="6">
+                  <a
+                    className="text-light"
+                    onClick={(e) => navigate("/forget_password")}
+                  >
+                    <small style={{ fontSize: 16, fontFamily: 'League Spartan', color: '#787878' }}>Forgot password?</small>
+                  </a>
+                </Col>
+                <Col className="text-right" xs="6">
+                  <a
+                    className="text-light"
+                    onClick={(e) => navigate("/signup")}
+                  >
+                    <small style={{ fontSize: 16, fontFamily: 'League Spartan', color: "#787878" }}>Create new account</small>
+                  </a>
+                </Col>
+              </Row>
+            </Col>
+          </Row>
+        </Container>
+      </section>
       <SimpleFooter />
       <Snackbar anchorOrigin={{ vertical: 'top', horizontal: 'center' }} open={openAlert} autoHideDuration={3000} onClose={(e) => setOpenAlert(false)}>
         <Alert severity={typeAlert} sx={{ width: '340px' }}>

@@ -58,7 +58,7 @@ export const Hero = () => {
                   <div className="display-flex mt-5">
                     <Button
                     onClick={(e) => navigate("/go_home")}
-                      className="align-center space-around display-flex height-64 width-240 blue-border border-smaller ok-backgroundcolor mb-3 mb-sm-0"
+                      className="white-backgroundcolor align-center space-around display-flex height-64 width-240 ok-backgroundcolor mb-3 mb-sm-0"
                       color=""
                     >
                       <span className="blue-color mr-1">Torna a casa</span>

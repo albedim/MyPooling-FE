@@ -11,32 +11,24 @@ import Avatar from "boring-avatars";
 import { BASE_URL } from "../../../config.ts";
 import { NotFound } from "./NotFound";
 
-export const OwnTrip = ({ownerId, tripId, code, departure_date, mode, slots, steps}) => {
 
-  const [departureDate, setDepartureDate] = useState("")
-
-  const fixDepartureDate = () => {
-    setDepartureDate(departure_date.substring(8,10) + '/' + departure_date.substring(5,7) + '/' + departure_date.substring(0,4))
-  }
+export const OwnTrip = ({ ownerId, tripId, code, departure_date, mode, slots, steps }) => {
 
   const [rides, setRides] = useState([])
 
   const [ridesModalStatus, setRidesModalStatus] = useState(false)
 
-  const getRides = async(trip_id, step_id) => {
-    await axios.get(BASE_URL + '/ride/get?tripId=' + trip_id + "&stepId=" + step_id)
-    .then(response => {
-      setRides(response.data)
-      console.log(rides)
-    })
-    .catch(error => console.log(error))
-  }
-  
-  useEffect(() => {
-    fixDepartureDate()
-  },[])
 
-  return(
+  const getRides = async (trip_id, step_id) => {
+    await axios.get(BASE_URL + '/ride/get?tripId=' + trip_id + "&stepId=" + step_id)
+      .then(response => {
+        setRides(response.data)
+        console.log(rides)
+      })
+      .catch(error => console.log(error))
+  }
+
+  return (
     <>
       <Modal
         className="modal-dialog-centered"
@@ -61,8 +53,8 @@ export const OwnTrip = ({ownerId, tripId, code, departure_date, mode, slots, ste
             <CardBody className="px-lg-5 py-lg-5">
               {
                 rides.length == 0 ? (
-                  <NotFound page={false}/>
-                ):(
+                  <NotFound page={false} />
+                ) : (
                   rides.map(ride => (
                     <div onClick={(e) => window.location.href = '/MyPooling-FE/profile/' + ride.user.username} className="hover align-center height-84 display-flex">
                       <div className="width-74 align-center space-around display-flex">
@@ -90,7 +82,7 @@ export const OwnTrip = ({ownerId, tripId, code, departure_date, mode, slots, ste
         </div>
       </Modal>
       <div className="align-center space-around display-flex height-380">
-        <div className="height-340"> 
+        <div className="height-340">
           <div className="box-shadow border-radius-5 height-240 width-340">
             <div className="display-flex space-between align-center height-74">
               <div className="display-flex align-center width-140"><span className="font-weight-600 font-size-20 margin-left-34 blue-color font-family">#{code}</span></div>
@@ -105,7 +97,7 @@ export const OwnTrip = ({ownerId, tripId, code, departure_date, mode, slots, ste
               <div className="align-center width-164 space-around display-flex">
                 <div className="width-98">
                   <div className="display-flex align-center height-34 width-140"><h2 className="font-weight-500 font-size-16 font-family">Creato da te</h2></div>
-                  <div className="align-center display-flex height-24 width-140"><h4 className="font-size-14 font-weight-400 gray-color font-family">{departureDate}</h4></div>
+                  <div className="align-center display-flex height-24 width-140"><h4 className="font-size-14 font-weight-400 gray-color font-family">{departure_date.substring(0,10).split("-")[2] + "/" + departure_date.substring(0,10).split("-")[1] + "/" + departure_date.substring(0,10).split("-")[0].substring(2,4) + ", " + departure_date.substring(11, 16)}</h4></div>
                 </div>
               </div>
               <div className="space-around align-center display-flex width-160">
@@ -113,7 +105,7 @@ export const OwnTrip = ({ownerId, tripId, code, departure_date, mode, slots, ste
                   {
                     mode == 'home' ? (
                       <span className="font-family">CASA</span>
-                    ):(
+                    ) : (
                       <span className="font-family">ISTITUTO</span>
                     )
                   }
@@ -122,38 +114,38 @@ export const OwnTrip = ({ownerId, tripId, code, departure_date, mode, slots, ste
             </div>
           </div>
           <div className="margin-top-24 width-340">
-          <Stepper activeStep={steps.length + 1} alternativeLabel>
-            {
-              mode == 'home' ? (
-                <Step style={{color: 'red'}} key={0}>
-                  <StepLabel><span className="font-weight-600 font-family">CASA</span></StepLabel>
-                </Step>
-              ):(
-                <Step style={{color: 'red'}} key={0}>
-                  <StepLabel><span className="font-weight-600 font-family">{ISTITUTE_NAME.toUpperCase()}</span></StepLabel>
-                </Step>
-              )
-            }
-            {
-              ownerId == jwt(window.localStorage.getItem('token')).sub.user_id ? (
-                steps.map(step => (
-                  <Step
-                    onClick={(e) => { 
-                      getRides(tripId, step.step_id); 
-                      setRidesModalStatus(true)
-                    }} style={{cursor: 'pointer', color: 'red'}} key={step.step_id}>
-                    <StepLabel><span className="font-weight-500 font-family">{step.name}</span></StepLabel>
+            <Stepper activeStep={steps.length + 1} alternativeLabel>
+              {
+                mode == 'home' ? (
+                  <Step style={{ color: 'red' }} key={0}>
+                    <StepLabel><span className="font-weight-600 font-family">CASA</span></StepLabel>
                   </Step>
-                ))
-              ):(
-                steps.map(step => (
-                  <Step style={{cursor: 'pointer', color: 'red'}} key={step.step_id}>
-                    <StepLabel><span className="font-weight-500 font-family">{step.name}</span></StepLabel>
+                ) : (
+                  <Step style={{ color: 'red' }} key={0}>
+                    <StepLabel><span className="font-weight-600 font-family">{ISTITUTE_NAME.toUpperCase()}</span></StepLabel>
                   </Step>
-                ))
-              )
-            }
-          </Stepper>
+                )
+              }
+              {
+                ownerId == jwt(window.localStorage.getItem('token')).sub.user_id ? (
+                  steps.map(step => (
+                    <Step
+                      onClick={(e) => {
+                        getRides(tripId, step.step_id);
+                        setRidesModalStatus(true)
+                      }} style={{ cursor: 'pointer', color: 'red' }} key={step.step_id}>
+                      <StepLabel><span className="font-weight-500 font-family">{step.name}</span></StepLabel>
+                    </Step>
+                  ))
+                ) : (
+                  steps.map(step => (
+                    <Step style={{ cursor: 'pointer', color: 'red' }} key={step.step_id}>
+                      <StepLabel><span className="font-weight-500 font-family">{step.name}</span></StepLabel>
+                    </Step>
+                  ))
+                )
+              }
+            </Stepper>
           </div>
         </div>
       </div>
