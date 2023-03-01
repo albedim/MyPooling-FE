@@ -189,7 +189,7 @@ export const Signin = () => {
                     className="text-light"
                     onClick={(e) => navigate("/forget_password")}
                   >
-                    <small style={{ fontSize: 16, fontFamily: 'League Spartan', color: '#787878' }}>Forgot password?</small>
+                    <small className="hover" style={{ fontSize: 16, fontFamily: 'League Spartan', color: '#787878' }}>Password dimenticata?</small>
                   </a>
                 </Col>
                 <Col className="text-right" xs="6">
@@ -197,7 +197,7 @@ export const Signin = () => {
                     className="text-light"
                     onClick={(e) => navigate("/signup")}
                   >
-                    <small style={{ fontSize: 16, fontFamily: 'League Spartan', color: "#787878" }}>Create new account</small>
+                    <small className="hover" style={{ fontSize: 16, fontFamily: 'League Spartan', color: "#787878" }}>Crea un account</small>
                   </a>
                 </Col>
               </Row>

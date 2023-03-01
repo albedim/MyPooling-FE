@@ -15,13 +15,13 @@ export const Feedback = ({ anonymous, creator, thought, stars }) => {
             <Rating className="margin-bottom-4 margin-left-8" readOnly onChange={(e) => e.preventDefault()} name="size-small" defaultValue={stars} size="small" />
           </div>
         </div>
-        <div className="align-center display-flex min-height-50 height-auto">
+        <div className="padding-5 align-center display-flex min-height-50 height-auto">
           <div className="margin-left-14">
             {
               thought == null ? (
-                <span className="font-family">Non è stato lasciato alcun commento</span>
+                <h6 className="font-family">Non è stato lasciato alcun commento</h6>
               ) : (
-                <span className="font-family">{thought}</span>
+                <h6 style={{textAlign: 'left'}} className="font-family">{thought}</h6>
               )
             }
           </div>

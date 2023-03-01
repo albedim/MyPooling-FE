@@ -67,7 +67,7 @@ export const AddTrip = () => {
     setTripData(newTripData);
   }
 
-  const handlePlace = (object) => {
+  const handleSteps = (object) => {
     const newSteps = steps;
     newSteps.push(object);
     setSteps(newSteps)
@@ -83,7 +83,6 @@ export const AddTrip = () => {
       .then(response => {
         setCreatedTripId(response.data.param)
         setMode('steps')
-        console.log(response.data)
       })
       .catch(error => console.log(error))
   }
@@ -92,7 +91,6 @@ export const AddTrip = () => {
     await axios.post(BASE_URL + '/step/add/' + createdTripId, steps)
       .then(response => {
         window.location.href = '/MyPooling-FE/profile/' + jwt(window.localStorage.getItem('token')).sub.username
-        console.log(response.data)
       })
       .catch(error => console.log(error))
   }
@@ -147,7 +145,7 @@ export const AddTrip = () => {
                   <Card className="bg-secondary shadow border-0">
                     <CardHeader className="bg-white pb-5">
                       <div className="text-muted text-center mb-3">
-                        <small className="font-size-16">ACCEDI</small>
+                        <small className="font-size-16">OFFRI UN PASSAGGIO</small>
                       </div>
                     </CardHeader>
                     <CardBody className="px-lg-5 py-lg-5">
@@ -246,7 +244,7 @@ export const AddTrip = () => {
                   <Card className="bg-secondary shadow border-0">
                     <CardHeader className="bg-white pb-5">
                       <div className="text-muted text-center mb-3">
-                        <small className="font-size-16">ACCEDI</small>
+                        <small className="font-size-16">CREA IL TUO ITINERARIO</small>
                       </div>
                     </CardHeader>
                     <CardBody className="px-lg-5 py-lg-5">
@@ -259,10 +257,10 @@ export const AddTrip = () => {
                           </InputGroupAddon>
                           <Input id="place" name='mode' onChange={(e) => getPlaces(e.target.value)} placeholder="Nome del posto" type="string" />
                         </InputGroup>
-                        <div className="white-backgroundcolor">
+                        <div className="overflow-y-scroll max-height-480 white-backgroundcolor">
                           {
                             places.map(place => (
-                              <div onClick={(e) => { handlePlace({ 'name': place.display_name, 'place_id': place.place_id, 'x': parseFloat(place.lat), 'y': parseFloat(place.lon) }); document.querySelector('#place').value = "" }} className="hover align-center height-84 display-flex">
+                              <div onClick={(e) => { handleSteps({ 'name': place.display_name, 'place_id': place.place_id, 'x': parseFloat(place.lat), 'y': parseFloat(place.lon) }); document.querySelector('#place').value = ""; setPlaces([]) }} className="hover align-center height-84 display-flex">
                                 <div className="width-74 align-center space-around display-flex">
                                   <div className="width-44">
                                     <Avatar

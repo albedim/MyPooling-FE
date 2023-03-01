@@ -16,6 +16,8 @@ export const OwnTrip = ({ ownerId, tripId, code, departure_date, mode, slots, st
 
   const [rides, setRides] = useState([])
 
+  const [selectedStep, setSelectedStep] = useState("")
+
   const [ridesModalStatus, setRidesModalStatus] = useState(false)
 
 
@@ -37,7 +39,7 @@ export const OwnTrip = ({ ownerId, tripId, code, departure_date, mode, slots, st
         toggle={() => ridesModalStatus}
       >
         <div className="modal-header">
-          <span>Chi devi andare a prendere qui</span>
+          <span>Chi devi andare a prendere a {selectedStep}</span>
           <button
             aria-label="Close"
             className="close"
@@ -113,7 +115,7 @@ export const OwnTrip = ({ ownerId, tripId, code, departure_date, mode, slots, st
               </div>
             </div>
           </div>
-          <div className="margin-top-24 width-340">
+          <div className="overflow-x-scroll border-smaller margin-top-24 width-340">
             <Stepper activeStep={steps.length + 1} alternativeLabel>
               {
                 mode == 'home' ? (
@@ -133,14 +135,15 @@ export const OwnTrip = ({ ownerId, tripId, code, departure_date, mode, slots, st
                       onClick={(e) => {
                         getRides(tripId, step.step_id);
                         setRidesModalStatus(true)
+                        setSelectedStep(step.name)
                       }} style={{ cursor: 'pointer', color: 'red' }} key={step.step_id}>
-                      <StepLabel><span className="font-weight-500 font-family">{step.name}</span></StepLabel>
+                      <StepLabel><span className="font-weight-500 font-family">{step.name.substring(0,14) + "..."}</span></StepLabel>
                     </Step>
                   ))
                 ) : (
                   steps.map(step => (
                     <Step style={{ cursor: 'pointer', color: 'red' }} key={step.step_id}>
-                      <StepLabel><span className="font-weight-500 font-family">{step.name}</span></StepLabel>
+                      <StepLabel><span className="font-weight-500 font-family">{step.name.substring(0,14) + "..."}</span></StepLabel>
                     </Step>
                   ))
                 )

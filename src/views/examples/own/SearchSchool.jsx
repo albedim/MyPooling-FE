@@ -47,13 +47,8 @@ export const SearchSchool = () => {
 
   const getPlaces = async () => {
     setIsLoading(true);
-    await axios.get("https://nominatim.openstreetmap.org/search?" + new URLSearchParams({
-      'q': place,
-      'format': "json",
-      'addressdetails': "addressdetails",
-    }).toString())
+    await axios.get("https://nominatim.openstreetmap.org/search?q=" + place + "&format=json&addressdetails=addressdetails")
       .then(response => {
-        console.log(response.data)
         setPlaces(response.data);
       })
       .catch(error => console.log(error));
@@ -63,7 +58,6 @@ export const SearchSchool = () => {
   const getTrips = async (place) => {
     setHasSelected(true);
     setIsLoading(true);
-    console.log(place.lat, place.lon)
     await axios.get(BASE_URL + `/trip/get/near?x=${parseFloat(place.lat)}&y=${parseFloat(place.lon)}&strength=${request.strength}&departure_date=${request.departure_date.replaceAll("-", ",")}&mode=building`)
       .then(response => {
         setTrips(response.data);

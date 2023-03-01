@@ -58,6 +58,8 @@ export const Profile = () => {
 
   const [user, setUser] = useState({});
 
+  const [userToEdit, setUserToEdit] = useState({})
+
   const [feedbackAnonymous, setFeedbackAnonymous] = useState(false)
 
   const [feedbackBody] = useState({
@@ -70,6 +72,7 @@ export const Profile = () => {
     await axios.get(BASE_URL + '/user/get?username=' + username)
       .then(response => {
         setUser(response.data)
+        setUserToEdit(response.data)
         getOwnTrips(response.data.user_id)
       })
       .catch(error => navigate("/page-not-found"))
@@ -119,9 +122,9 @@ export const Profile = () => {
   }
 
   const changeUserData = async () => {
-    await axios.put(BASE_URL + '/user/change', user)
+    await axios.put(BASE_URL + '/user/change', userToEdit)
       .then(response => {
-
+        window.location.href = '/MyPooling-FE/profile/' + username
       })
       .catch(error => console.log(error))
   }
@@ -148,9 +151,9 @@ export const Profile = () => {
   }, [])
 
   const handleAccountData = (e) => {
-    const newAccountData = { ...user };
+    const newAccountData = { ...userToEdit };
     newAccountData[e.target.name] = e.target.value;
-    setUser(newAccountData)
+    setUserToEdit(newAccountData)
   }
 
   return (
@@ -189,7 +192,7 @@ export const Profile = () => {
                               <i className="ni ni-hat-3" />
                             </InputGroupText>
                           </InputGroupAddon>
-                          <Input name="name" value={user.name} onChange={(e) => handleAccountData(e)} placeholder="Name" type="text" />
+                          <Input name="name" value={userToEdit.name} onChange={(e) => handleAccountData(e)} placeholder="Name" type="text" />
                         </InputGroup>
                       </FormGroup>
                       <FormGroup>
@@ -199,7 +202,7 @@ export const Profile = () => {
                               <i className="ni ni-hat-3" />
                             </InputGroupText>
                           </InputGroupAddon>
-                          <Input name="age" value={user.age} onChange={(e) => handleAccountData(e)} placeholder="Anni" type="number" />
+                          <Input name="age" value={userToEdit.age} onChange={(e) => handleAccountData(e)} placeholder="Anni" type="number" />
                         </InputGroup>
                       </FormGroup>
                       <FormGroup>
@@ -209,7 +212,7 @@ export const Profile = () => {
                               <i className="ni ni-hat-3" />
                             </InputGroupText>
                           </InputGroupAddon>
-                          <Input name="bio" value={user.bio} onChange={(e) => handleAccountData(e)} placeholder="Dicci di più su di te" type="text" />
+                          <Input name="bio" value={userToEdit.bio} onChange={(e) => handleAccountData(e)} placeholder="Dicci di più su di te" type="text" />
                         </InputGroup>
                       </FormGroup>
                       <FormGroup>
@@ -219,7 +222,7 @@ export const Profile = () => {
                               <i className="ni ni-hat-3" />
                             </InputGroupText>
                           </InputGroupAddon>
-                          <Input name="place" value={user.place} onChange={(e) => handleAccountData(e)} placeholder="Dove abiti?" type="text" />
+                          <Input name="place" value={userToEdit.place} onChange={(e) => handleAccountData(e)} placeholder="Dove abiti?" type="text" />
                         </InputGroup>
                       </FormGroup>
                       <FormGroup>
@@ -229,7 +232,7 @@ export const Profile = () => {
                               <i className="ni ni-email-83" />
                             </InputGroupText>
                           </InputGroupAddon>
-                          <Input name="email" value={user.email} onChange={(e) => handleAccountData(e)} placeholder="Email" type="email" />
+                          <Input name="email" value={userToEdit.email} onChange={(e) => handleAccountData(e)} placeholder="Email" type="email" />
                         </InputGroup>
                       </FormGroup>
                       <FormGroup>
@@ -240,7 +243,7 @@ export const Profile = () => {
                             </InputGroupText>
                           </InputGroupAddon>
                           <Input
-                            name="password" value={user.password} onChange={(e) => handleAccountData(e)}
+                            name="password" value={userToEdit.password} onChange={(e) => handleAccountData(e)}
                             placeholder="Password"
                             type="password"
                             autoComplete="off"
@@ -255,9 +258,28 @@ export const Profile = () => {
                         />
                       </div>
                       <div className="text-center">
-                        <Button onClick={(e) => { changeUserData(); setAccountModalStatus(false) }} className="border-none white-color blue-backgroundcolor my-4" color="" type="button">
-                          CAMBIA
-                        </Button>
+                        {
+                          (user.name == userToEdit.name &&
+                            user.username == userToEdit.username &&
+                            user.age == userToEdit.age &&
+                            user.place == userToEdit.place &&
+                            user.bio == userToEdit.bio &&
+                            user.email == userToEdit.email) ||
+                          (userToEdit.name == "" || 
+                            userToEdit.AME == "" || 
+                            userToEdit.age == 0 || 
+                            userToEdit.place == "" || 
+                            userToEdit.email == ""
+                          ) ? (
+                            <Button className="opacity-40 border-none white-color blue-backgroundcolor my-4" color="" type="button">
+                              CAMBIA
+                            </Button>
+                          ):(
+                            <Button onClick={(e) => { changeUserData(); setAccountModalStatus(false) }} className="border-none white-color blue-backgroundcolor my-4" color="" type="button">
+                              CAMBIA
+                            </Button>
+                          )
+                        }
                       </div>
                     </Form>
                   </CardBody>
