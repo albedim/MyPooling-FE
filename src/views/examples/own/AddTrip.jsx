@@ -60,6 +60,8 @@ export const AddTrip = () => {
 
   const [steps, setSteps] = useState([])
 
+  const [stepTime, setStepTime] = useState("07:00")
+
 
   const handleTripData = (e) => {
     const newTripData = { ...tripData };
@@ -255,25 +257,27 @@ export const AddTrip = () => {
                               <i className="ni ni-email-83" />
                             </InputGroupText>
                           </InputGroupAddon>
+                          <Input value={stepTime} onChange={(e) => setStepTime(e.target.value)} placeholder="Orario" type="time" />
+                        </InputGroup>
+                        <InputGroup className="input-group-alternative">
+                          <InputGroupAddon addonType="prepend">
+                            <InputGroupText>
+                              <i className="ni ni-email-83" />
+                            </InputGroupText>
+                          </InputGroupAddon>
                           <Input id="place" name='mode' onChange={(e) => getPlaces(e.target.value)} placeholder="Nome del posto" type="string" />
                         </InputGroup>
                         <div className="overflow-y-scroll max-height-480 white-backgroundcolor">
                           {
                             places.map(place => (
-                              <div onClick={(e) => { handleSteps({ 'name': place.display_name, 'place_id': place.place_id, 'x': parseFloat(place.lat), 'y': parseFloat(place.lon) }); document.querySelector('#place').value = ""; setPlaces([]) }} className="hover align-center height-84 display-flex">
-                                <div className="width-74 align-center space-around display-flex">
-                                  <div className="width-44">
-                                    <Avatar
-                                      size={"30px"}
-                                      name={place.display_name}
-                                      variant="beam"
-                                      colors={["#87C7F6", "#50B5F6", "#42A6EE", "#5EB4F2", "#439FDF"]}
-                                    />
-                                  </div>
-                                </div>
+                              <div onClick={(e) => {
+                                  handleSteps({ 'name': place.display_name, 'time': stepTime, 'place_id': place.place_id, 'x': parseFloat(place.lat), 'y': parseFloat(place.lon) }); 
+                                  document.querySelector('#place').value = ""; 
+                                  setPlaces([])
+                                }} className="hover align-center height-84 display-flex">
                                 <div className="align-center display-flex height-54">
                                   <div>
-                                    <div className="margin-left-14 font-size-16 font-family">{place.display_name.substring(0, 17) + "..."}</div>
+                                    <div className="margin-left-14 font-size-16 font-family">{place.display_name.substring(0, 34) + "..."}</div>
                                     <div className="margin-left-14 font-weight-500 gray-color font-size-16 font-family">{place.address.state == null ? place.address.country : place.address.state + ", " + place.address.country}</div>
                                   </div>
                                 </div>
@@ -282,6 +286,23 @@ export const AddTrip = () => {
                           }
                         </div>
                       </Form>
+                      <div className="margin-top-54 overflow-y-scroll max-height-480">
+                        <div>
+                          <span className="font-size-16 font-family">Punti da aggiungere</span>
+                        </div>
+                        {
+                          steps.map(step => (
+                            <div className="white-backgroundcolor margin-top-14 box-shadow color border-radius-5 hover align-center height-64 display-flex">
+                              <div className="align-center display-flex height-54">
+                                  <div>
+                                    <div className="margin-left-14 font-size-16 font-family">{step.name.substring(0, 34) + "..."}</div>
+                                    <div className="gray-color margin-left-14 font-size-16 font-family">{step.time}</div>
+                                  </div>
+                              </div>
+                            </div>
+                          ))
+                        }
+                      </div>
                       <div className="text-center">
                         {
                           steps.length == 0 ? (

@@ -203,7 +203,7 @@ export const SearchHome = () => {
                 <div className="display-flex align-center overflow-x-scroll width-almost-full">
                   {
                     trips.map((trip) => (
-                      <TripComponent owner_username={trip.owner.username} step_id={trip.step.step_id} trip_id={trip.trip_id} username={trip.owner.username} departure_date={trip.departure_date} used_slots={trip.used_slots} slots={trip.slots} code={trip.code} />
+                      <TripComponent time={trip.step.time} owner_username={trip.owner.username} step_id={trip.step.step_id} trip_id={trip.trip_id} username={trip.owner.username} departure_date={trip.departure_date} used_slots={trip.used_slots} slots={trip.slots} code={trip.code} />
                     ))
                   }
                 </div>
