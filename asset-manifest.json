@@ -1,11 +1,11 @@
 {
   "files": {
-    "main.css": "/MyPooling-FE/static/css/main.ec80feff.css",
-    "main.js": "/MyPooling-FE/static/js/main.2428aa96.js",
-    "static/media/fontawesome-webfont.svg?v=4.7.0": "/MyPooling-FE/static/media/fontawesome-webfont.c1e38fd9e0e74ba58f7a.svg",
+    "main.css": "/MyPooling-FE/static/css/main.55f11b49.css",
+    "main.js": "/MyPooling-FE/static/js/main.253c8e6f.js",
+    "static/media/fontawesome-webfont.svg?v=4.7.0": "/MyPooling-FE/static/media/fontawesome-webfont.6878d55e3615ccf40c38.svg",
     "static/media/fontawesome-webfont.eot": "/MyPooling-FE/static/media/fontawesome-webfont.8b43027f47b20503057d.eot",
     "static/media/fontawesome-webfont.ttf?v=4.7.0": "/MyPooling-FE/static/media/fontawesome-webfont.1e59d2330b4c6deb84b3.ttf",
-    "static/media/nucleo-icons.svg": "/MyPooling-FE/static/media/nucleo-icons.01ebecaf50461162d4bc.svg",
+    "static/media/nucleo-icons.svg": "/MyPooling-FE/static/media/nucleo-icons.95fa360c1c73431a0f9a.svg",
     "static/media/team-4-800x800.jpg": "/MyPooling-FE/static/media/team-4-800x800.99c612eb60728a5aeeb0.jpg",
     "static/media/fontawesome-webfont.woff?v=4.7.0": "/MyPooling-FE/static/media/fontawesome-webfont.f691f37e57f04c152e23.woff",
     "static/media/fontawesome-webfont.woff2?v=4.7.0": "/MyPooling-FE/static/media/fontawesome-webfont.20fd1704ea223900efa9.woff2",
@@ -16,11 +16,11 @@
     "static/media/nucleo-icons.woff": "/MyPooling-FE/static/media/nucleo-icons.c82c9b7c40130b7116d3.woff",
     "static/media/nucleo-icons.woff2": "/MyPooling-FE/static/media/nucleo-icons.cba267483aa6a7cb6e33.woff2",
     "index.html": "/MyPooling-FE/index.html",
-    "main.ec80feff.css.map": "/MyPooling-FE/static/css/main.ec80feff.css.map",
-    "main.2428aa96.js.map": "/MyPooling-FE/static/js/main.2428aa96.js.map"
+    "main.55f11b49.css.map": "/MyPooling-FE/static/css/main.55f11b49.css.map",
+    "main.253c8e6f.js.map": "/MyPooling-FE/static/js/main.253c8e6f.js.map"
   },
   "entrypoints": [
-    "static/css/main.ec80feff.css",
-    "static/js/main.2428aa96.js"
+    "static/css/main.55f11b49.css",
+    "static/js/main.253c8e6f.js"
   ]
 }
